@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 체크</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <!--버튼을 클릭하면 checkLogin 함수가 호출-->
+        <button type="button" onclick="checkLogin()">Login</button>
+    </form>
+    <p id="message"></p>
+
+    <script>
+        function checkLogin() {
+		        // validUsername과 validPassword 변수에는 정의된 올바른 사용자 이름과 비밀번호가 저장 되어 있습니다.
+            const validUsername = 'user';
+            const validPassword = 'pass';
+            console.log(username, password);
+            
+//1번 username변수에 #username에 입력한 값을, password변수에 #password에 입력한 값을 할당 합니다.
+						//여기에 코드를 작성해 주세요(1번)
+            var username = document.getElementById("username").value
+            var password = document.getElementById("password").value
+
+            //2번 && 연산자를 사용하여 username과 password가 validUsername과 validPassword와 둘 다 올바른지 확인
+            //여기에 코드를 작성해 주세요(2번)
+            var isLoginValid = (username == validUsername) && (password === validPassword)
+ 
+            //아이디가 message인 요소를 선택
+            const messageElement = document.getElementById('message');
+            //3번 username과 password가 올바르면(true) messageElement에 "로그인 성공" 이라는 글자를 넣어 주고, username과 password중 하나라도 다르면 "로그인 실패" 라는 글자를 넣어 줍니다.  
+						//여기에 코드를 작성해 주세요(3번)
+            if(isLoginValid){
+              messageElement.textContent = "로그인 성공"
+              messageElement.style.color = "green"
+            }
+            else{
+              messageElement.textContent = "아이디 및 패스워드가 틀렸습니다."
+              messageElement.style.color = "red"
+            }
+        }
+    </script>
+</body>
+</html>
