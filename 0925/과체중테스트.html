@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var name = prompt("당신의 이름은?", "");
+    var height = prompt("당신의 신장은?", "0");
+    var weight = prompt("당신의 몸무게는?", "0");
+    let average = (height - 100)*0.9;
+
+    if( weight <= average-5){
+     document.write("당신은 저체중입니다.");
+
+    }    else if (weight >= average+5){
+      document.write("당신은 과체중입니다.");
+    } else{
+      document.write("당신은 정상체중입니다.")
+    }
+
+
+  
+  </script>
+</body>
+
+</html>
