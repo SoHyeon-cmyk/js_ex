@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var val = prompt("1~9사이의 숫자 하나만 입력하세요." ,1)
+    var answer = "";
+    val = Number(val)
+    switch(val){
+      case 1:
+      case 2:
+      case 3:
+        answer = "Low";
+        break;
+      case 4:
+      case 5:
+      case 6:
+        answer = "Mid";
+        break;
+      case 7: 
+      case 8: 
+      case 9: 
+        answer = "High";
+        break;
+        default:
+          answer = "1~9사이의 숫자만 입력하세요";
+          break;
+      }
+      console.log(answer);
+  </script>
+</body>
+</html>
