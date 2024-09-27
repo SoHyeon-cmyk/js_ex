@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .accordion{
+      background-color: #eee;
+      color: #444;
+      padding: 18px;
+      width: 100%;
+      text-align: left;
+      border: 0;
+      transition: all .4s;
+    }
+    .active,.accordion:hover{
+      background-color: #ccc;
+    }
+    .accordion::after{
+      content: '\02795';
+      font-size: 13px;
+      color: #777;
+      float: right;
+    }
+
+    .active::after{
+      content: '\2796';
+    }
+
+    .panel{
+      padding: 0 18px;
+      background-color: white;
+      display: none;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <button class="accordion">section 1</button>
+  <div class="panel">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci distinctio ex ratione dolores eos aperiam non quis debitis, laboriosam consequuntur itaque nostrum eaque possimus sint earum iure ea. Ratione, in.</div>
+  <button class="accordion">section 2</button>
+  <div class="panel">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci distinctio ex ratione dolores eos aperiam non quis debitis, laboriosam consequuntur itaque nostrum eaque possimus sint earum iure ea. Ratione, in.</div>
+  <button class="accordion">section 3</button>
+  <div class="panel">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci distinctio ex ratione dolores eos aperiam non quis debitis, laboriosam consequuntur itaque nostrum eaque possimus sint earum iure ea. Ratione, in.</div>
+
+  <script>
+    const acc = document.getElementsByClassName("accordion");
+    console.log(acc) 
+    for(let ac of acc){
+      ac.addEventListener("click", function(){
+
+        ac.classList.toggle("active");
+        const panel = ac.nextElementSibling;{
+
+        if(panel.style.maxHeight){
+        panel.style.maxHeight = null;
+        }
+        else{
+          console.log(panel.scrollHeight) //읽기전용 속성, 콘텐츠 총 높이를 나타내며 넘쳐서 안보이는 콘텐츠도 포함
+        }
+      } 
+
+      panel.style.maxHeight = panel.scrollHeight + "px";
+      })
+    }
+  </script>
+</body>
+</html>

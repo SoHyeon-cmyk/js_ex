@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img{
+      width:200px; 
+      height:200px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <img src="img/p1.jpg" alt="" >
+  <img src="img/p2.jpg" alt="" >
+  <img src="img/p3.jpg" alt="" >
+
+
+
+  <script>
+    const imgs = document.querySelectorAll("img");
+    console.log(imgs);
+
+
+
+
+
+    //img태그를 순회하면서 클릭이벤트를 추가
+    // for(let i=0; i < imgs.length; i++){
+    //   //imgs배열의 순번이 i번째인 이미지요소를 선택하고 클릭이벤트를 추가
+    //   imgs[i].addEventListener("click", function(){
+    //     //1~20사이의 정수를 구함
+    //     let n = Math.ceil(Math.random() * 20);
+    //     //클릭한 이미지 요소의 src속성값을 생성한 숫자를 적용해서 변경
+    //     imgs[i].src = "img/p" + n + ".jpg"; <<가독성 때문에 지양하는 코드
+    //   })
+    // }
+
+
+
+
+
+    for(let img of imgs){
+      //이미지 배열의 순번이 i번째인 이미지 요소를 선택 및 클릭이벤트 추가
+      img.addEventListener("click", function(){
+      //1과 20사이의 정수를 구함
+      let n = Math.ceil(Math.random() * 20 );      
+      img.src =`img/p${n}.jpg`; //${}내부에 변수를 넣어서 사용
+      
+    })
+  }
+  </script>
+</body>
+</html>

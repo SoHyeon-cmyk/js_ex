@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+    text-align: center;
+    font-family: sans-serif;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background: #000;
+}
+div {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 14rem;
+    box-shadow: 0 0 1rem rgba(0,0,0,.5);
+}
+  </style>
+</head>
+<body>
+  <div>
+    <p id="colorText">컬러 코드 검색</p>
+    <input type="color" id="colorPicker">
+  </div>
+
+  <script>
+    //컬러 코드 가져오기
+    // console.log(document.querySelector("#colorPicker").value)
+
+    //컬러 코드 텍스트로보기
+    //document.querySelector("#colorPicker").textContent = "컬러 코드 : " + document.querySelector("#colorPicker").value
+    // document.querySelector("#colorPicker").textContent = `컬러 코드 :
+    // ${document.querySelector("#colorPicker").value}`
+
+    //상수로 깔끔하게 코드 정리
+    const text = document.querySelector("#colorText");
+    const color = document.querySelector("#colorPicker");
+
+    text.textContent = `컬러 코드: ${color.value} (black)`;
+
+    //기본적인 이벤트 작성 방법
+    //무엇이.addEventListener(어떻게 하면, 어떻게 되는가);
+    
+    //컬러 피커가 변경되면 colorBg를 실행시킴
+    color.addEventListener("input", colorBg);
+    function colorBg(){
+      //컬러 코드를 표시
+      if(color.value === '#ffffff'){
+        text.textContent = `컬러 코드: ${color.value} (white)`;
+      }else if(color.value === '#000000'){
+        text.textContent = `컬러 코드: ${color.value} (black)`;
+      }else{
+        text.textContent = `컬러 코드: ${color.value}`;
+      }
+      //선택한 색을 배경색으로 설정
+      document.body.style.backgroundColor = color.value;
+    }
+  </script>
+  </script>
+</body>
+</html>

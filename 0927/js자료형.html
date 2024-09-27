@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // let memberCount=31
+    // let pageSize = 10;
+
+    // let pageCount = Math.ceil(memberCount / pageSize);
+    // console.log(pageCount)
+
+  //   for (let i = 0; i < 30; ++i) {
+  // let a = Math.floor(Math.random() * 10 + 10);
+  // console.log(a);
+  //   }
+
+
+    var randomNum = Math.floor(Math.random() * 6);
+
+var trial = 0; //시도횟수
+
+var find = false;  //반복문 제어 코드
+while( find == false ){
+    var predictNum = prompt("0~5사이의 숫자를 예측하시오");
+    trial ++;//입력시도 횟수 증가
+    if(predictNum == randomNum){
+        console.log("임의의 숫자는 " +predictNum+"입니다."); 
+        find = true;//find변수가 일치할 시 반복문 종료
+    }
+    else if(predictNum > randomNum){
+        console.log("예측값이 임의의 숫자보다 큽니다."); 
+    }
+    else{
+        console.log("예측값이 임의의 숫자보다 작습니다."); 
+    }
+}
+console.log(trial + "번 만에 임의의 숫자를 찾았습니다."); //시도 횟수 출력
+
+  </script>
+</body>
+</html>
