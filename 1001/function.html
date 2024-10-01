@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+function multipleCheck(a, b){        
+    if(a <= 0 || b <= 0){
+        console.log('양수를 입력하세요.');
+        return; 
+    }
+    if(a%b == 0)  console.log('a는 b의 배수입니다.');
+    else console.log('a는 b의 배수가 아닙니다.');                 
+}
+var a = -10, b = 2;        
+multipleCheck(a,b);
+a = 10, b = 2;
+multipleCheck(a,b);
+  </script>
+</body>
+</html>  
