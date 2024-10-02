@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 320px;
+      height: 240px;
+      position: relative;
+      background: url(bg.jpg);
+    }
+
+    div img {
+      position: absolute;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+  <script>
+    const parent = document.querySelector("div");
+    function arrageImg() {
+      for (let i = 0; i < 21; i++) {
+        parent.innerHTML += `<img src='seq/seq${i}.png' alt ='${i}'>`;
+      }
+      parent.firstElementChild.style.display = "inline";
+    }
+    arrageImg();
+
+    //setInterval 함수를 호출할때 id값을 저장할 변수를 생성(clearInterval)시 필요
+    let timer;
+
+    //count변수는 setInterval에서 주기적으로 함수를 호출할때 img위치가 저장됨
+    let count = 0;
+
+    //parent요소에 마우스를 올려놨을 때 실행
+
+    parent.addEventListener("mouseover", () =>{
+      if(timer){
+        clearInterval(timer);
+      }
+      timer = setInterval(nextFrame, 50);
+    })
+
+    parent.addEventListener("mouseout", ()=>{
+      if(timer) clearInterval(timer);
+      timer = setInterval(prevFrame,50)
+    })
+
+    const images = document.querySelectorAll("div > img");
+    
+    function prevFrame(){
+      images[count].style.display = "none";
+      count -= 1;
+      if(count<0){
+        count=0;
+        clearInterval(timer);
+      }
+      images[count].style.display = "inline";
+    }
+
+
+    function nextFrame(){
+      
+      images[count].style.display = "none";
+
+      //count에 있는 변수 값을 1씩 증가시켜 다시 count에 저장
+      count += 1;
+
+      if(count>20){
+        count=20;//count값을 20으로 고정
+        clearInterval(timer);
+      }
+      images[count].style.display = "inline";
+    }
+  </script>
+</body>
+
+</html>

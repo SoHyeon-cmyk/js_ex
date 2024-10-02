@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const tempString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (let i =0; i<tempString.length; i++){//tempString의 수 만큼 반복
+      if(i % 7 !== 0 || i ===0){//i가 7의 배수가 아니거나 0이면 출력
+        document.write(tempString[i])
+      }else{
+        document.write("*")
+
+      }
+    }
+  </script>
+</body>
+</html>

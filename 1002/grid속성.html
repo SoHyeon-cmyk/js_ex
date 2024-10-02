@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{box-sizing:border-box;}
+
+body{
+    margin:0;
+}
+.item{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    font-size:1.2rem;
+    font-weight: bold;
+    border:1px solid black;
+}
+.color1{background-color:aqua;}
+.color2{background-color:bisque;}
+.color3{background-color:coral;}
+.color4{background-color:darkcyan;}
+.color5{background-color:brown;}
+
+.container{
+display: grid;
+/* 몇개의 행을 만들어 줄 것인지 크기는 어떻게 설정할 것인지 정의 */
+/* grid-template-columns: 100px 100px 100px;
+/* 몇개의 줄을 만들어 줄 것인지 설정 */
+/* grid-template-rows: 200px 200px 100px; */
+/* repeat함수 활용: repeat(반복할 횟수, 크기) */
+/* grid-template-columns: repeat(5,100px);
+
+grid-template-rows: repeat(2,100px);
+
+grid-template-columns: repeat(5,20%);
+
+/* fr단위 활용 */
+grid-template-columns: 1fr 2fr 1fr;
+grid-template-columns: repeat(5, 1fr);
+
+grid-auto-rows: 150px;
+/* 최소높이를 150px로 유지하고 콘텐츠 내용이 많은 부분은 오토로 설정  */
+grid-auto-rows: minmax(150px, auto);
+
+grid-column-gap: 10px;
+grid-row-gap: 10px;
+grid-gap: 20px;
+padding: 10px;
+
+
+.item:nth-child(2){
+  /* 두번째 줄에서 4번째 줄까지 늘려줌 */
+  grid-column: 2/4;
+  grid-row: 1/3;
+  /* 두번째 줄에서 2줄크기 만큼 늘림 */
+  grid-column: 2/ span 2;
+  /* 두번째 줄에서 끝까지 */
+  grid-column: 2 / -1; 
+}
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="item color1">item1</div>
+    <div class="item color2">item2</div>
+    <div class="item color3">item3</div>
+    <div class="item color4">item4</div>
+    <div class="item color5">item5</div>
+    <div class="item color1">item6</div>
+    <div class="item color2">item7</div>
+    <div class="item color3">item8</div>
+    <div class="item color4">item9</div>
+    <div class="item color5">item10</div>
+  </div>
+</body>
+</html>

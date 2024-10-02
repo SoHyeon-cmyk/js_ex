@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      padding: 80px;
+      background-color: black;
+    }
+    .image{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .container{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      /* 모든 셀의 높이는 150px로 고정 */
+      grid-auto-rows: 150px;
+      grid-gap: 40px;
+
+      grid-template-areas: 
+      'a a a'
+      'b c c'
+      'b d g'
+      'e f g';
+
+      .image1{
+        grid-area: a;
+      }
+      .image2{
+        grid-area: b;
+      }
+      .image3{
+        grid-area: c;
+      }
+      .image4{
+        grid-area: d;
+      }
+      .image5{
+        grid-area: e;
+      }
+      .image6{
+        grid-area: f;
+      }
+      .image7{
+        grid-area: g;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="container">
+    <img src="https://images.unsplash.com/photo-1667507036738-2d25c59d2378?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60" alt="img" class="image image1">
+    <img src="https://images.unsplash.com/photo-1667715191315-351400a5789a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60" alt="img" class="image image2">
+    <img src="https://images.unsplash.com/photo-1667506057454-87e10fb157d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60" alt="img" class="image image3">
+    <img src="https://images.unsplash.com/photo-1667588732543-5c2c989126e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60" alt="img" class="image image4">
+    <img src="https://images.unsplash.com/photo-1667778679904-9d008f9f22c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80" alt="img" class="image image5">
+    <img src="https://images.unsplash.com/photo-1667792932202-4719a8a1acfd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80" alt="img" class="image image6">
+    <img src="https://images.unsplash.com/photo-1667770333188-87df24a2c37e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80" alt="img" class="image image7">
+  </section>  
+</body>
+</html>

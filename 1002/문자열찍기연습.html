@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="typing"></p>
+  <script>
+    let x = "Heaven helps those who help themselves.";
+    let i = 0;
+    const typing = document.querySelector("#typing");
+    function typeWrtier(){//typing요소에 x변수의 글자중 인덱스가 i번째인 글자를 더해서 출력
+      if(i< x.length){
+        typing.textContent += x[i];
+        i++;//i변수의 값을 1증가
+        
+        setTimeout(typeWrtier,50)
+      }else{
+        i = 0;
+        setTimeout(recall,1000);
+      }
+    }
+    function recall(){
+      //타이핑요소 글자 비워주기
+      typing.textContent = "";
+      typeWrtier();//다시 호출
+    }
+    typeWrtier();
+  </script>
+</body>
+</html>
