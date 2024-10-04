@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  *{margin:0;padding:0;}
+  ul,li{list-style:none;}
+  a{text-decoration:none; color:#333;}
+
+  header{
+    width:960px;
+    margin:0 auto;
+    height:150px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0 10px;
+    box-sizing: border-box;
+  }
+
+  header ul#gnb{
+    display:flex;
+  }
+  ul#gnb li{
+    width:200px;
+    height:40px;
+    position:relative;
+  }
+  ul#gnb li a{
+    display:block;
+    width:100%;
+    height:100%;
+    background-color:rgba(255,255,255, 0.7);
+    text-align: center;
+    line-height:40px;
+  }
+
+  ul#gnb li a:hover{
+    background-color:green;
+    color:#fff;
+  }
+  ul#gnb li .sub a:hover{
+    background-color:darkseagreen;
+    color:#fff;
+  }
+  
+  ul#gnb li .sub{
+    position:absolute;
+    transition:max-height .5s;
+    max-height:0px;
+    overflow:hidden;
+  }
+
+  .slide{
+    width:960px;
+    height:300px;
+    overflow: hidden;
+    margin:0 auto;
+  }
+</style>
+<body>
+  <header>
+		<h1 class="logo">
+			<img src="img/logo.png" alt="logo" width="220" />
+		</h1>
+		<ul id="gnb">
+			<li>
+				<a href="#">MainMenu1</a>
+				<ul class="sub">
+					<li><a href="#">SubMenu1</a></li>
+					<li><a href="#">SubMenu2</a></li>
+					<li><a href="#">SubMenu3</a></li>
+					<li><a href="#">SubMenu4</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">MainMenu2</a>
+				<ul class="sub">
+					<li><a href="#">SubMenu1</a></li>
+					<li><a href="#">SubMenu2</a></li>
+					<li><a href="#">SubMenu3</a></li>
+					<li><a href="#">SubMenu4</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">MainMenu3</a>
+				<ul class="sub">
+					<li><a href="#">SubMenu1</a></li>
+					<li><a href="#">SubMenu2</a></li>
+					<li><a href="#">SubMenu3</a></li>
+					<li><a href="#">SubMenu4</a></li>
+				</ul>
+
+			</li>
+		</ul>
+	</header>
+	
+	<section>
+		<article class="slide">
+			<img src="img/images.jpg" alt="" />
+		</article>
+	</section>
+  
+  <script>
+    const gnbLi = document.querySelectorAll('#gnb > li');
+
+//gnbLi요소들을 순회하면서 item에 이벤트 핸들러 등록
+for(const item of gnbLi){
+  //메뉴에 마우스를 올려놨을때 실행
+  item.addEventListener('mouseenter', () => {
+    //화살표 함수 내에서의 this는 상위객체인 window가 선택됨
+    item.lastElementChild.style.maxHeight = item.lastElementChild.scrollHeight+"px";
+  })
+  //메뉴에서 마우스가 떠났을때 실행
+  item.addEventListener("mouseleave", () => {
+    item.lastElementChild.style.maxHeight = "0px";
+  })
+}
+  </script>
+</body>
+</html>

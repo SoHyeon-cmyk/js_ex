@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>다운내비연습</title>
+  <style>
+    *{margin:0; padding:0;}
+    ul,li{list-style:none;}
+    a{text-decoration: none; color:inherit;}
+
+    nav{
+      min-width:1200px;
+      background-color:orange;
+      color:#fff;
+      font-family: "Pretendard";
+    }
+    nav > .container{
+      width:1200px;
+      margin:0 auto;
+      padding:0 10px;
+      box-sizing: border-box;
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo{
+      font-size:20px;
+    }
+    nav .gnb{
+      display:flex;
+    }
+
+    nav .gnb > li{
+      margin-right:60px;
+      position: relative;
+      text-indent: 10px;
+    }
+
+    nav .gnb > li a{
+      display:block;
+      padding:10px 0;
+    }
+
+    .sub{
+      position:absolute;
+      width:150px;
+      background-color:#999;
+      max-height: 0px;
+      transition: max-height .5s;
+      overflow: hidden;
+    }
+
+    /*hover효과*/
+    .gnb a:hover{
+      color:red;
+    }
+
+
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <div class="logo"><a href="#">LOGO</a></div>
+      <ul class="gnb">
+        <li>
+          <a href="#">ABOUT</a>
+          <ul class="sub">
+            <li><a href="#">My Name</a></li>
+            <li><a href="#">Birth Day</a></li>
+            <li><a href="#">Education</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">NEWS</a>
+          <ul class="sub">
+            <li><a href="#">Today News</a></li>
+            <li><a href="#">Social</a></li>
+            <li><a href="#">Information</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">PORTFOLIO</a>
+          <ul class="sub">
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Printout</a></li>
+            <li><a href="#">My Photo</a></li>
+            <li><a href="#">Illustration</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">BOARD</a>
+          <ul class="sub">
+            <li><a href="#">Notice</a></li>
+            <li><a href="#">Free Board</a></li>
+            <li><a href="#">Contact Me</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">ALBUM</a>
+          <ul class="sub">
+            <li><a href="#">Our Family</a></li>
+            <li><a href="#">My Friends</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">CONTACT</a>
+          <ul class="sub">
+            <li><a href="#">Location</a></li>
+            <li><a href="#">E-mail</a></li>
+            <li><a href="#">Mobile Phone</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <script>
+    const gnbLi =document.querySelectorAll('.gnb > li');
+
+    for(const item of gnbLi){
+      item.addEventListener('mouseenter', () =>{
+        item.lastElementChild.style.maxHeight = item.lastElementChild.scrollHeight+"px";
+      })
+      item.addEventListener("mouseleave", () => {
+    item.lastElementChild.style.maxHeight = "0px";
+  })
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>vanilla</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style-type: none;
+    }
+
+    body {
+      font: 12px/1.5 "굴림", Gulim;
+      margin: 10px;
+    }
+
+    h2 {
+      margin-top: 20px;
+    }
+
+    h2+p+p {
+      overflow: hidden;
+      max-height: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    <h1>제이쿼리 Effect to 바닐라스크립트</h1>
+    <p>제이쿼리에서는 화면전환, 슬라이드 다운과 업 효과 등<br />다양한 효과 메서드를 제공하며, 바닐라JS로 구현이 가능합니다.</p>
+
+    <h2>slideDown/up 효과</h2>
+    <p>
+      <button id="btn1">slideUp</button>
+      <button id="btn2">slideDown</button>
+      <button id="btn3">slideToggle</button>
+    </p>
+    <p>slideUp은 선택 요소를 위로 미끄러지듯 말아 올리면서 숨깁니다.<br />반면,
+      slideDown은 선택 요소를 아래로 미끄러지듯 말아 내리면서 노출시킵니다.</p>
+
+    <h2>fadeIn/fadOut</h2>
+    <p>
+      <button id="btn4">fadeOut</button>
+      <button id="btn5">fadeIn</button>
+      <button id="btn6">fadeToggle</button>
+    </p>
+    <p>fadeOut은 선택 요소를 천천히 사라지게 만듭니다.<br />fadeIn은 선택 요소를 천천히 나타나게 합니다.</p>
+
+    <h2>fadeTo 효과</h2>
+    <p>
+      <button id="btn7">fadeTo(0.3)</button>
+      <button id="btn8">fadeTo(1)</button>
+    </p>
+    <p id="box3">fadeTo는 선택 요소를 원하는 만큼만 <br />보이거나 숨길 수 있습니다.</p>
+  </div>
+  <script> 
+    //slideDown/up효과
+
+    //slideUp버튼 = #btn1
+    document.querySelector('#btn1').addEventListener("click", function () {
+      //이벤트가 발생된 요소 = #btn1
+      //#btn4의 부모요소의 다음형제요소의 style속성인 transtion을 설정
+      this.parentNode.nextElementSibling.style.transition = "max-height .5s";
+      
+      this.parentNode.nextElementSibling.style.maxHeight = "0px";
+    });
+
+
+    //fadeIn/fadeOut효과
+    
+    //fadeOut버튼
+    document.querySelector('#btn4').addEventListener('click', function () {
+      const ParentNextStyle = this.parentNode.nextElementSibling.style; //#btn4의 부모요소의 다음형제 요소의 스타일
+      ParentNextStyle.transition = 'opacity 1s';//transition적용
+      ParentNextStyle.opacity = '0';//opacity를 0으로 변경
+      setTimeout(function () {
+        ParentNextStyle.display = 'none';//1초후에 display를 none으로 변경
+      }, 1000)
+    })
+    
+    //#btn5 = show버튼
+    document.querySelector('#btn5').addEventListener('click', function () {
+      const ParentNextStyle = this.parentNode.nextElementSibling.style;
+      ParentNextStyle.display = 'block';
+      setTimeout(function () {
+        ParentNextStyle.transition = 'opacity .75s';
+        ParentNextStyle.opacity = '1';
+      }, 1)
+      //display속성과 opacity 동시에 변경하면 transition이 적용되지 않음
+      //display를 먼저변경하고, 0.001초라도 나중에 opacity를 변경하여 transition효과를 적용시킴
+    })
+
+
+    //slidedown버튼
+
+    document.querySelector('#btn2').addEventListener("click", function(){
+      this.parentNode.nextElementSibling.style.transition = "max-height .25s";
+      //해당요소의 총 높이값ㅇ로 높이를 지정하여 0부터 해당높이값으로 요소가 펼쳐지게 만들어줌
+      this.parentNode.nextElementSibling.style.maxHeight = 
+      this.parentNode.nextElementSibling.scrollHeight + "px";
+    })
+
+//슬라이드 토글
+
+document.querySelector('#btn2').addEventListener("click", function(){
+      this.parentNode.nextElementSibling.style.transition = "max-height .25s";
+      console.log(this.parentNode.nextElementSibling.scrollHeight)
+      //해당요소의 총 높이값으로 높이를 지정하여 0부터 해당 높이값으로 요소가 펼쳐지게 만들어 줌
+      this.parentNode.nextElementSibling.style.maxHeight = this.parentNode.nextElementSibling.scrollHeight+"px";
+    })
+    //slideToggle버튼 클릭시
+    document.querySelector('#btn3').addEventListener("click", function(){
+      //부모요소의 다음 요소를 선택
+      const parentNext = this.parentNode.nextElementSibling;
+      parentNext.style.transition = "max-height .25s";
+
+      if(window.getComputedStyle(parentNext).maxHeight !== "0px"){//부모의 다음형제요소의 maxHeight값이 0이 아니면 실행
+        parentNext.style.maxHeight = '0px';
+      }else{//maxHeight값이 0이면 parentNext의 총 높이값으로 maxHeight값을 적용 
+        parentNext.style.maxHeight = parentNext.scrollHeight+"px";
+      }
+    });
+
+    
+//페이드토글
+
+document.querySelector('#btn6').addEventListener("click", function(){
+  const parentNext = this.parentNode.nextElementSibling;
+  parentNext.style.transition = 'opacity .5s'
+
+  if(getComputedStyle(parentNext).opacity !== "0"){
+    parentNext.style.opacity = 0
+    setTimeout(function(){
+      parentNext.style.display = "none";
+    },500)
+  }else{
+    parentNext.style.display = "block";
+    setTimeout(function(){
+      parentNext.style.opacity = 1;
+    })
+  }
+})
+
+
+//fade to()...
+
+document.querySelector('#btn7').addEventListener("click", function(){
+  this.parentNode.nextElementSibling.style.transition = 'opacity 0.75s'
+  this.parentNode.nextElementSibling.style.opacity = '0.3';
+})
+document.querySelector('#btn8').addEventListener("click", function(){
+  this.parentNode.nextElementSibling.style.transition = 'opacity 0.25s'
+  this.parentNode.nextElementSibling.style.opacity = '1';
+})
+    </script>
+</body>
+
+</html>

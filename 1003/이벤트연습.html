@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <head>
+    <meta charset="utf-8">  
+    <title>이벤트 연습</title>
+    <style>
+    input[name="search"]{
+        width: 250px;
+        padding: 5px;
+        border: 2px solid #aaa;
+    }
+    </style>
+</head>
+<body>
+  <input type="text" name="search" onkeydown="mySearch(event)" placeholder="검색어 입력 후, 엔터를 클릭하세요.">
+
+<script>
+function mySearch(event){
+  if(event.keyCode == 13 ){
+    alert(event.target.value)//입력창의 입력값을 추적 후, 경고창 출력
+  }
+}
+</script>
+</body>
+</html>

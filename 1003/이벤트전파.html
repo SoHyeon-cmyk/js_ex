@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {	 margin:0;    padding:0;	 }
+    body { 	margin-left:300px;   margin-top:60px;	 }
+    #wrapper { 	width:200px;   height:200px;   border:1px solid red;   
+        background-color: yellow;   padding:150px;		}
+    #targetBox { 	width:200px;   height:200px;   background-color: red;   color:#FFFFFF	 }
+    </style>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="targetBox"></div>
+  </div>
+
+  <script>
+    const wrapper = document.querySelector("#wrapper");
+    const box = document.querySelector("#targetBox");
+
+    box.addEventListener("click",(e) => {
+      e.stopPropagation();//자식객체가 클릭되었을 때 부모 객체로 클릭 이벤트가 전달되지
+    //않도록 메서드를 호출하여 버블링을 차단
+      box.style.backgroundColor = "black";
+    });
+
+    wrapper.addEventListener("click",() => {
+      wrapper.style.backgroundColor = "blue";
+    });
+
+  </script>
+</body>
+</html>

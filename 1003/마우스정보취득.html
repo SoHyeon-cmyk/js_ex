@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #wrapper {
+      width: 3000px;
+      height: 3000px;
+    }
+
+    #box {
+      width: 400px;
+      height: 400px;
+      border: 2px solid blue;
+      margin-left: 300px;
+      margin-top: 100px;
+      position: fixed;
+    }
+
+    #box>p {
+      padding: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="box">
+      <p>
+        clientX = <span id="clientx">0</span><br>
+        clientY = <span id="clienty">0</span><br>
+        offsetX = <span id="offsetx">0</span><br>
+        offsetY = <span id="offsety">0</span><br>
+        pageX = <span id="pagex">0</span><br>
+        pageY = <span id="pagey">0</span><br>
+        screenX = <span id="screenx">0</span><br>
+        screenY = <span id="screeny">0</span>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const box = document.querySelector("#box");
+    box.addEventListener('mousemove', (e) =>{
+      //document에서 스크롤 이동값을 제외한 마웃의 x,y좌표값
+      const clientx = document.querySelector("#clientx").textContent = e. clientX;
+      
+          //이벤트 발생시 이벤트의 대상으로 부터 마우스의 x,y좌표값
+          const offsetx = document.querySelector('#offsetx').textContent = e.offsetX;
+            const offsety = document.querySelector('#offsety').textContent = e.offsetY;
+      const clienty = document.querySelector("#clienty").textContent = e.clientY;
+
+      //document에서 스크롤 이동값을 포함한 마우스의 x,y좌표 값
+  const pagex = document.querySelector('#pagex').textContent = e.pageX;
+  const pagey = document.querySelector('#pagey').textContent = e.pageY;
+
+	//모니터 화면을 기준으로 마우스의 x,y좌표 값
+  const screenx = document.querySelector('#screenx').textContent = e.screenX;
+  const screeny  = document.querySelector('#screeny').textContent = e.screenY;
+    })
+  </script>
+</body>
+
+</html>
