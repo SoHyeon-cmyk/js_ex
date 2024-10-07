@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>연습문제</title>
+<style>
+   .coral {background-color: lightcoral}
+   .green {background-color: lightgreen}
+   .blue {background-color: lightblue}
+</style>
+</head>
+<body>
+
+<button type="button" onclick="change()">변경</button>    
+<ul>
+    <li class="coral">첫 번째 리스트입니다.</li>
+    <li>두 번째 리스트입니다.</li>
+    <li class="green">세 번째 리스트입니다.</li>
+    <li>네 번째 리스트입니다.</li>
+    <li id="third" class="blue">다벗 번째 리스트입니다.</li>
+</ul>
+
+<script>
+//change 함수를 구성합니다.
+function change(){
+    //A = getElementsClassName(name)과 querySelectorAll(선택자)를 이용하여 클래스 coral의 개수를 확인 합니다.
+	let elms = document.getElementsByClassName("coral")
+  let items = document.querySelectorAll('.coral')
+  console.log("전",elms.length, items.length)
+
+    document.getElementById('third').className = 'coral';
+    //B = 아이디가 third인 요소에 coral클래스를 추가하고 다시 한번 클래스 coral의 개수를 확인합니다.
+    console.log("후",elms.length, items.length)
+}
+</script>
+</body>
+</html>

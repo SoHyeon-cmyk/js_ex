@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>연습문제</title>
+<style>
+	#mylist{
+	    list-style-type: none;
+	    padding: 0;
+	}
+	#mylist > li{
+	    line-height: 2em;
+	    margin: 5px 0;
+	    border: 1px solid #ccc;
+	    cursor: pointer;
+	    background: url("bullet.png") no-repeat;
+	    text-indent: 32px;
+	}
+	.clicked{
+	    background-color: lightgreen !important;
+	}
+</style>
+</head>
+<body>
+<ul id="mylist">
+    <li>1번째 목록</li>
+    <li>2번째 목록</li>
+    <li>3번째 목록</li>
+</ul>
+
+<script>
+var lists = document.querySelectorAll('#mylist > li');
+
+for(var i=0; i<lists.length; i++){
+    //목록(리스트)에 mouseover와 mouseout하면 배경색이 연한 회색(#eee)이 되고,
+    //클릭하면 lightgreen으로 바꾸는 코드를 작성해 보세요   
+   lists[i].addEventListener("mouseenter",function(){
+    this.style.backgroundColor = "#eee";
+   })
+   lists[i].addEventListener("mouseout",function(){
+    this.style.backgroundColor = "transparent"
+   })
+   lists[i].onclick = clickList;
+
+
+  }
+  
+function clickList(){
+    // if(this.className == 'clicked'){
+    //     this.className = '';
+    // }else{
+    //     this.className = 'clicked';
+    // }
+    this.classList.toggle("clicked")
+}
+
+</script>
+</body>
+</html>

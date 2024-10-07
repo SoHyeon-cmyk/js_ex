@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+
+	.tab_menu {
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  display:flex;
+}
+
+.tab_menu button {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+.tab_menu button:hover {
+  background-color: #ddd;
+}
+
+.tab_menu button.on{
+	background-color:#ccc;
+	font-weight:bold;
+}
+
+.tab_list > div{
+	display:none;
+	padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.tab_list > div.on{
+	display:block;
+}
+	</style>
+</head>
+<body>
+	<div class="tab">
+
+		<div class="tab_menu">
+			<button>London</button>
+			<button>Paris</button>
+			<button>Seoul</button>
+		</div>
+
+		<div class="tab_list">
+			<div id="London">
+				<h3>London</h3>
+				<p>London is the capital city of England.</p>
+			</div>
+
+			<div id="Paris">
+				<h3>Paris</h3>
+				<p>Paris is the capital of France.</p>
+			</div>
+
+			<div id="Tokyo">
+				<h3>Tokyo</h3>
+				<p>Tokyo is the capital of Japan.</p>
+			</div>
+		</div>
+
+
+  <script>
+		// 버튼요소들과 리스트요들을 선택
+		const tabMenus = document.querySelectorAll(".tab_menu > button")
+		const tabLists = document.querySelectorAll(".tab_list > div")
+		tabMenus.forEach((tabMenu,index) => tabMenu.addEventListener("click",() =>{
+			// 버튼의 갯수 만큼 반복실행  
+			for(let i = 0; i < tabMenus.length; i++){
+				tabMenus[i].classList.remove("on");
+				tabLists[i].classList.remove("on");
+			}
+			//클릭한 버튼에 ON클래스 추가
+			tabMenu.classList.add("on");
+			//클릭한 버튼과 같은 순번의 리스트 요소에 on 클래스 추가
+			tabLists[index].classList.add("on");
+
+		}))
+  </script>
+</body>
+</html>

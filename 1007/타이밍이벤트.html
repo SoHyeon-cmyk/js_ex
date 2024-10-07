@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box {
+      position: relative;
+      height: 200px;
+      background-color: orange;
+    }
+
+    #box>div {
+      position: absolute;
+      top: 75px;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      background-color: purple;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>타이밍 이벤트 - 연습문제</h1>
+
+  <div id="box">
+    <div></div>
+  </div>
+
+
+
+  <script>
+    let myTimeout; //setTimeout함수를 담을 변수
+    let flag = false; //flag가 false면 doMove함수가 호출되지 않음(doMove함수 실행을 제어)
+
+    //div요소에 클릭이벤트 추가
+    document.querySelector('#box > div').onclick = function () {
+      // this.style.left = 0; //클릭한 div요소의 left값을 0으로 설정
+      flag = !flag; //flag속성값을 반전
+      doMove(this); //doMove함수를 호출 인자로 클릭한 div를 전달
+    }
+
+    function doMove(obj) { //doMove함수에서 obj매개변수로 인자를 받음
+
+      //이곳에 코드 작성
+      
+      if(flag){
+        // obj.style.left = parseInt(obj.style.left) + 10 + "px";
+
+        // attribute로 초기 left값을 선언하지 않았을 경우
+        obj.style.left =parseInt(getComputedStyle(obj).left) + 10 + "px";
+        
+        myTimeout = setTimeout(doMove, 250, obj); //doMove함수를 0.25초 뒤에 호출 이때 obj매개변수를 전달(재귀 함수) 
+      }else{//flag가 false면 실행
+        clearTimeout(myTimeout)
+      }
+
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button type="button" class="btn1">버튼추가</button>
+  <button type="button" class="btn2">버튼제거</button>
+
+  <ul class="itemlist">
+    <li><input type="button" value="button1"></li>
+    <li><input type="button" value="button2"></li>
+  </ul>
+  <script>
+    //매번 요소가 새로 추가 될때마다 이벤트리스너를 새로 작성 하는 것이 아니라 부모요소에게 이벤트를 주고 이벤트위임으로 자식요소에게 이벤트를 전달하여 사용할 수 있다.
+
+    const itemlist = document.querySelector(".itemlist");
+
+    //itemlist에 클릭이벤트 추가 -> 클릭한 버튼요소의 value값을 출력
+    itemlist.addEventListener('click', e => alert(e.target.value))
+
+    //btn1변수에 button요소를 할당
+    const btn1 = document.querySelector(".btn1");
+
+    let i = 2; //button글자뒤에 붙는 순번
+    //btn1에 클릭이벤트 추가
+    btn1.addEventListener("click", () => {
+      i++;//i값을 1증가 시킴
+      //li변수에 li요소를 생성하여 할당
+      let li = document.createElement("li");
+      //input 요소를 생성
+      let input = document.createElement("input");
+      //생성된 인풋요소에 type과 value값을 할당
+      input.setAttribute("type", "button");
+      //value값을 button+i로 설정하여 증가된 숫자로 넣어줌
+      input.setAttribute("value", "button"+i);
+      //생성된 li요소에 input요소를 추가
+      li.appendChild(input);
+      //.itemList요소에 생성한 li요소를 마지막 자손으로 추가
+      itemlist.appendChild(li);
+    })
+
+    document.querySelector(".btn2").addEventListener("click", ()=>{
+      const li = document.querySelector(".itemlist > li:last-child");
+      li.remove();
+      i--;
+    })
+  </script>
+</body>
+
+</html>

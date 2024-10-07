@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <ul class="itemlist">
+    <li><input type="button" value="button1"></li>
+    <li><input type="button" value="button2"></li>
+    <li><input type="button" value="button3"></li>
+  </ul> -->
+  <button type="button" class="btn1">버튼추가</button>
+  <button type="button" class="btn1">버튼제거</button>
+
+  <ul class="itemlist">
+    <li><input type="button" value="button1"></li>
+    <li><input type="button" value="button2"></li>
+    <!-- <li><input type="button" value="button3"></li> -->
+  </ul>
+  
+  <script>
+    const buttons = document.querySelectorAll('input');
+    //forEach문으로 input요소를 순환하면서 click이벤트 생성=>alert문으로 input요소의 value을 출력.
+    buttons.forEach(button =>button.addEventListener("click", e => alert(`${e.target.value}클릭`)))
+
+    const itemlist =document.querySelector(".itmemlist")
+    
+let input = document.creatElement("input")
+input,setInterval("type", "button")
+input,setInterval("value", "button"+i)
+li.appendChild(input);
+itemlist.appendChild(li);
+
+//매번 요소가 새로 추가 될때마다 이벤ㅌ리스너를 새로 작성하는 것이 아니라 이벤트 위임으로 자식에게 전달
+// 하여 사용 가능
+
+    // itemlis에 클릭이벤트 추가 -> 클릭한 버튼요소의 value값을 출력
+    itemlist.addEventListener('click', e => alert(e.target.value))
+
+
+    const btn1 = document.querySelector(".btn1")
+    let i = 2;
+    btn1.addEventListener("click", ()=>{
+      i++;
+    })
+  </script>
+</body>
+</html>

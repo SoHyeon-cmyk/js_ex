@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #pic {
+      width: 300px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 1px 1px 2px black;
+    }
+  </style>
+</head>
+
+<body>
+  <img src="pic/pic1.jpg" alt="이미지" id="pic">
+
+  <script>//이미지요소 선택
+    const pic = document.querySelector("#pic");
+    //src속성값에 뒤에서 5번째 순번의 한글자만 반환
+    let sNum = pic.getAttribute("src").substr(-5,1);
+    console.log(sNum)
+
+    let timer = setInterval(gogo,2000);
+    function gogo(){
+      if(sNum>=3){
+        sNum=0
+      }
+      sNum++;
+      //pic요소의 scr속성의 이미지 경로를 변경하여 이미지를 변환
+      pic.setAttribute("src", `pic/pic${sNum}.jpg`)
+
+      pic.addEventListener("mouseenter", function(){
+        clearInterval(timer)
+      })
+      pic.addEventListener("mouseleave", function(){
+        timer = setInterval(gogo,2000);
+      })
+    }
+  </script>
+</body>
+
+</html>
