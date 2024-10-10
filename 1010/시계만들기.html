@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .frame {
+      display: inline-block;
+      padding: 8px;
+      border-radius: 8px;
+      background-color: #000000;
+    }
+
+    .clock {
+      color: #ffffff;
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .large_text {
+      font-size: 75px;
+    }
+
+    .small_text {
+      font-size: 20px;
+    }
+
+    .date_box {
+      font-size: 15px;
+    }
+
+    .colon {
+      font-size: 55px;
+      vertical-align: text-bottom;
+      animation: blink 1s step-start infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="frame">
+    <div class="clock">
+      <div class="time_box">
+        <span id="hours" class="large_text"></span>
+        <span class="colon">:</span>
+        <span id="minute" class="large_text"></span>
+        <span id="seconds" class="small_text"></span>
+      </div>
+      <div class="date_box">
+        <span id="year"></span>
+        <span>.</span>
+        <span id="month"></span>
+        <span>.</span>
+        <span id="date"></span>
+        <span id="day"></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const watchClock = () => {
+
+      function leftPad(number) {
+        if (number < 10) {
+          return `0${number}`
+        }
+        return number;
+      }
+
+      //인자값으로 selector(선택요소)를 전달받고 text(요소안에 넣어줄 글자)를 전달받아서
+      //선택요소에 내용을 채워넣는 함수
+
+      function setText(selector, text) {
+        const targetElement = document.querySelector(selector);
+
+        if (!targetElement) return;
+
+        targetElement.innerText = text;
+      }
+
+      function getDayText(index){
+        const days = ['일요일','월요일','화요일','수요일','목요일','금요일','토요일',];
+        return days[index];
+      }
+
+      const present = new Date();
+      const hour = leftPad(present.getHours());
+      const minute = leftPad(present.getMinutes());
+      const second = leftPad(present.getSeconds());
+      const year = present.getFullYear();
+      const month = leftPad(present.getMonth()+1);
+      const date = leftPad(present.getDate());
+      const day = getDayText(present.getDay());
+
+      setText('#hours', hour)
+      setText('#minute', minute)
+      setText('#seconds', second)
+      setText('#year', year)
+      setText('#month',month )
+      setText('#date', date)
+      setText('#day', day)
+      
+    }
+    watchClock();
+    setInterval(watchClock, 1000);
+  </script>
+</body>
+
+</html>

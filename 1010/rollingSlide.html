@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin:0;padding:0;}
+	li{list-style:none;float:left;width:80px;}
+	/*img의 크기 72px - 여백(8px)*/
+	
+	h1{text-align:center;}	
+	#banner_wrap{
+		width:260px;
+		padding:10px 20px;
+		margin:0 auto;
+		border:1px solid #aaa;
+	}
+	#banner{
+		width:800px;
+		height:54px;
+		border:1px solid red;
+	}
+	#frame{
+		width:232px;
+		height:54px;
+		position:relative;
+		margin:10px auto;
+		border:1px solid blue;
+		overflow:hidden;
+		}
+	</style>
+	
+</head>
+<body>
+	<h1>롤링 슬라이드 배너 만들기</h1>
+	<div id="banner_wrap">
+	<div id="frame">
+		<ul id="banner">
+			<li><a href="#"><img src="롤링슬라이드/pic_t1.jpg" alt="사진1"></a></li>
+			<li><a href="#"><img src="롤링슬라이드/pic_t2.jpg" alt="사진2"></a></li>
+			<li><a href="#"><img src="롤링슬라이드/pic_t3.jpg" alt="사진3"></a></li>
+			<li><a href="#"><img src="롤링슬라이드/pic_t4.jpg" alt="사진4"></a></li>
+			<li><a href="#"><img src="롤링슬라이드/pic_t5.jpg" alt="사진5"></a></li>
+			
+		</ul>
+	</div>
+	<p>
+		<a href="#" class="prev">
+			<img src="롤링슬라이드/prev_btn.png" alt="이전 버튼">
+		</a>
+		<a href="#" class="next">
+			<img src="롤링슬라이드/next_btn.png" alt="다음 버튼">
+		</a>
+	</p>
+	</div>
+  
+  <script>
+    const list = document.querySelector('#banner');
+    const listLi = document.querySelectorAll('#banner li');
+
+    const show_num = 3; //한번에 보여줄 슬라이드 수
+    const total = listLi.length; //전체 슬라이드의 갯수
+    //첫번째 li의 넓이를 변수에 저장(정수)
+    const li_width = parseInt(getComputedStyle(listLi[0]).width);
+    console.log(li_width)
+    let eventhandler = true;//이벤트 제어(true일때만 이벤트가 적용)
+
+    //무한으로 스크롤하기 위해 3개의 슬라이드를 복사하여 추가
+    for (let i = 0; i < show_num; i++) {
+      //li요소의 순번이 i번째인 요소를 복제, 이제 자식요소까지 복제
+      const copyobj = listLi[i].cloneNode(true);
+      list.appendChild(copyobj);//복제한 요소를 list에 추가
+    }
+    // console.log(document.querySelectorAll("#banner li").length)
+    //#banner의 넓이를 li의 갯수만큼 늘리거나 줄여줌
+    list.style.width = li_width * document.querySelectorAll("#banner li").length + "px";
+
+    let num = 0;//현재 슬라이드 번호를 관리하는 변수
+
+    //슬라이드를 자동으로 전환하는 기능을 수행
+    function autoplay() {
+      //num이 전체 슬라이드 수(5)에 도달하면 num을 0으로 초기화
+      if (num === total) {
+        num = 0;
+        list.style.transition = 'none';//transition을 제거
+        list.style.marginLeft = '0px';//#banner의 marginLeft값을 0으로 초기화
+      }
+      //0.05초 후에 함수를 실행
+      setTimeout(function () {
+        num++;//num값을 1 증가시킴
+        list.style.transition = 'margin-left .5s';
+        //li의 넓이값 * num만큼 마이너스값을 적용하여 왼쪽으로 이동
+        list.style.marginLeft = `${-li_width * num}px`;
+      }, 50);
+    }
+
+    //슬라이드 자동 실행
+    let timer = setInterval(autoplay, 3000);
+
+    //마우스 오버시 정지, 아웃 시 재개
+    const listWrap = document.querySelector("#banner_wrap");
+    listWrap.addEventListener('mouseover', () => clearInterval(timer));
+    listWrap.addEventListener('mouseout', () => timer = setInterval(autoplay, 3000))
+
+    //next버튼에 클릭이벤트 리스너 추가
+    document.querySelector('.next').addEventListener('click', function (e) {
+      if (eventhandler) {//eventhandler가 true일때만 실행
+        eventhandler = false;//슬라이드 중에 이벤트가 중첩으로 실행되는 것을 막아줌
+        if (num === total) {
+          num = 0;
+          list.style.transition = 'none';//transition을 제거
+          list.style.marginLeft = '0px';//#banner의 marginLeft값을 0으로 초기화
+        }
+        //0.05초 후에 함수를 실행
+        setTimeout(function () {
+          num++;//num값을 1 증가시킴
+          list.style.transition = 'margin-left .5s';
+          //li의 넓이값 * num만큼 마이너스값을 적용하여 왼쪽으로 이동
+          list.style.marginLeft = `${-li_width * num}px`;
+
+          //0.5초 후에 evnethandler를 true로 변경하여 다시 이벤트가 발생하도록 만들어 줍니다.
+          setTimeout(function(){
+            eventhandler = true;
+          },500);
+        }, 50);
+      }
+    });
+
+    //prev버튼에 클릭이벤트 리스너 추가
+    document.querySelector('.prev').addEventListener('click', function (e) {
+      if (eventhandler) {//eventhandler가 true일때만 실행
+        eventhandler = false;//슬라이드 중에 이벤트가 중첩으로 실행되는 것을 막아줌
+        if (num === 0) {//num이 0이 되면
+          num = total;//num값을 list의 마지막 순번으로 적용
+          list.style.transition = 'none';//transition을 제거
+          list.style.marginLeft = `${-li_width*num}px`;//#banner의 marginLeft값을 li요소의 마지막 위치로 이동
+        }
+        //0.05초 후에 함수를 실행
+        setTimeout(function () {
+          num--;//num값을 1 감소시킴
+          list.style.transition = 'margin-left .5s';
+          //li의 넓이값 * num만큼 마이너스값을 적용하여 왼쪽으로 이동
+          list.style.marginLeft = `${-li_width * num}px`;
+
+          //0.5초 후에 evnethandler를 true로 변경하여 다시 이벤트가 발생하도록 만들어 줍니다.
+          setTimeout(function(){
+            eventhandler = true;
+          },500);
+        }, 50);
+      }
+    })
+  </script>
+</body>
+
+</html>

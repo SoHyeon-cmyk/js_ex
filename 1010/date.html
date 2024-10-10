@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var today = new Date();
+document.write('오늘 날짜 정보는: ' + today);
+var weekday = ['Sunday', 'Monday', 'Tuesday',
+    'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+//Date 객체의 다양한 메소드를 이용하여 현재 시각 및 날짜 정보를 가져옵니다.
+document.write('연도: ' + today.getFullYear());       
+document.write('월: ' + (today.getMonth()+1));
+document.write('일: ' + today.getDate());
+document.write('요일: ' + weekday[today.getDay()]);
+document.write('시: ' + today.getHours());
+document.write('분: ' + today.getMinutes());
+document.write('초: ' + today.getSeconds())
+    var birthDay = new Date(2005,4,5,10,10,10);
+document.write('birthDay: ' + birthDay);  
+    
+// let weekday = {
+//   'sunday',
+//   'monday',
+//   'tuesday',
+//   'wednesday',
+//   'thursday',
+//   'friday',
+//   'saturday',
+// }
+
+var date = new Date();
+// 2030,11,11,11,11,11
+date.setFullYear(2030);
+date.setMonth(10); // 11월
+date.setDate(11);
+date.setHours(11); 
+date.setMinutes(11);
+    
+//1 50일 이후의 날짜는   
+var date = new Date(2021,10,10);   
+console.log('날짜 정보는: ' + date);
+//2 특정 날짜 정보(getDay())를 읽은 후, 50을 더하고 setDate()를 이
+  </script>
+</body>
+</html>

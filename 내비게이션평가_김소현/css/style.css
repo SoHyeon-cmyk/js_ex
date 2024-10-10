@@ -1,0 +1,316 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Open Sans", sans-serif;
+	font-size: 16px;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+img {
+	max-width: 100%;
+}
+
+/* header */
+.header { 
+	margin: 0 auto;
+	width: 1020px;
+	height: 100px;
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.header .social {
+	position: relative;
+	width: 196px;
+	height: 25px;
+}
+.header .social{
+	display:flex;
+}
+.header .social ul {
+	display:flex;
+}
+.header .social li a {
+	display: block;
+	margin-right:6px;
+	width: 25px;
+	height: 25px;
+}
+
+.header .social .mileage_btn {
+	width: 88px;
+	height: 24px;
+} 
+.header .signature {
+	width: 155px;
+	height: 78px;
+}
+.header .signature img {
+	width: 100%;
+}
+.header .location ul {
+	height: 26px;
+	display:flex;
+}
+.header .location li { 
+	height: 26px;
+}
+.header .location li a {
+	display: block;
+	padding: 0 15px;
+	line-height: 26px;
+	text-align: center;
+	font-family: "돋움", Dotum, sans-serif;
+	font-size: 12px;
+	background: url(../images/bg_table_col.gif) no-repeat left center; 
+	color: #797d85;
+}
+.header .location li:first-child a {
+	background: none;
+}
+.header .location li:nth-child(3) a {
+	padding-right: 0;
+}
+
+/* nav */
+.mobile_tab {
+	display: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 120;
+	margin-right: 20px;
+	margin-top: 15px;
+	width: 28px;
+}
+.mobile_tab a {
+	display: block;
+	width: 28px;
+}
+.mobile_nav {
+	position: fixed;
+	right: -220px;
+	top: 0;
+	z-index: 150;
+	padding: 40px 24px;
+	width: 220px;
+	height: 100%;
+	background: #fff;
+	box-sizing: border-box;
+	box-shadow: 0 0 2px rgba(0,0,0,.2);
+	transition: right 0.4s ease-out;
+}
+.mobile_nav.active {
+	right: 0;
+}
+.mobile_nav > ul > li  > a {
+	display: block;
+	padding: 0 10px;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 600;
+	color: #2f2f2f;
+	border-bottom: 1px dotted #ccc;
+	box-sizing: border-box;
+}
+.mobile_nav > ul > li:hover > a {
+	color: #b4252d;
+}
+.mobile_nav .sub{
+	display:block;
+	overflow:hidden;
+	transition:max-height .3s;
+	max-height:0px;
+}
+.mobile_nav .sub > li {
+	height: 35px;
+	border-top: 1px dotted #eaeaea;
+}
+.mobile_nav .sub > li:first-child {
+	border-top: none;
+}
+.mobile_nav .sub li a {
+	display: block;
+	padding: 0 10px;
+	width: 100%;
+	line-height: 35px;
+	text-decoration: none;
+	font-size: 13px;
+	color: #2f2f2f;
+	background: #f4f4f4;
+	border-bottom: 1px dotted #eaeaea;
+	box-sizing: border-box;
+	transition: background 0.3s;
+}
+.mobile_nav .sub li a:hover {
+	background: #fff;
+}
+.nav {
+	position: relative;
+}
+.nav > ul {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 54px;
+	overflow: hidden;
+	text-align: center;
+	background: url(../images/bg_gnb.gif) repeat-x 0 0;
+	/* background:#fff; */
+	transition: height 0.3s;
+}
+.nav > ul.over { /*ul요소에 over클래스가 추가되면 메뉴의 높이가 185px로 변경*/
+	height: 185px;
+}
+.nav > ul > li {
+	display: inline-block;
+	position: relative;
+	margin-left: 61px;
+	height: 54px;
+	overflow: hidden;
+}
+.nav > ul.over > li {/*ul요소에 over클래스가 추가되면 메뉴리스트의 높이도 185px로 변경*/
+	height: 185px;
+}
+.nav > ul > li:first-child {
+	margin-left: 0;
+}
+.nav > ul > li > a {
+	display: block;
+	padding: 0 30px;
+	line-height: 54px;
+	text-decoration: none;
+	font-size: 14px;
+	color: #2f2f2f;
+}
+.nav > ul > li:first-child > a {
+	padding-left: 0;
+}
+.nav > ul > li:nth-child(6) > a {
+	padding-right: 0;
+}
+.nav > ul > li:hover > a {
+	color: #b4252d;
+}
+.nav .sub {
+	position: absolute;
+	margin-left: 30px;
+	padding-top: 14px;
+	width: 100%;
+	height: 130px;
+}
+.nav > ul > li:first-child .sub {
+	margin-left: 0;
+}
+.nav .sub a {
+	display: block;
+	padding: 6px 0 7px;
+	line-height: 1;
+	text-align: left;
+	text-decoration: none;
+	font-size: 12px;
+	color: #a0a0a0;
+}
+.nav .sub a:hover {
+	text-decoration: underline;
+	color: #000;
+}
+
+/* hero */
+.hero {
+	margin-top: 54px;
+}
+.hero img {
+	width: 100%;
+	height: auto
+}
+.transparency {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 130;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.4);
+}
+.transparency.active {
+	display: block;
+}
+
+/* responsive */
+@media only screen and (max-width: 1050px) {
+	.header {
+		width: 826px;
+	}
+	.nav li:nth-child(6) {
+		display: none;
+	}
+	.nav li:nth-child(5) a {
+		padding-right: 0;
+	}
+}
+@media only screen and (max-width: 850px) {
+	.header {
+		width: auto;
+		height: 72px;
+	}
+	.header .social {
+		margin-left: 20px;
+		width: 90px;
+	}
+	.header .social .mileage_btn {
+		display: none;
+	}
+	.header .signature {
+		position: absolute;
+		left: calc(50% - 50px);
+		top: 0;
+		width: 100px;
+		height: 54px;
+	}
+	.header .location {
+		display: none;
+	}
+	.mobile_tab {
+		display: block;
+	}
+	.nav {
+		display: none;
+	}
+	.hero {
+		margin-top: 0;
+	}
+}
+@media only screen and (max-width: 380px) {
+	.header .social {
+		display: none;
+	}
+	.header .signature {
+		left: 0;
+		top: 0;
+		margin-left: 12px;
+	}
+}
+
+/* 전체 영역이 움직이는 컨테이너 제작 */
+.container {
+	position: relative;
+	left: 0;
+	transition: left 0.4s ease-out;
+}
+.container.active {
+	left: -220px;
+}

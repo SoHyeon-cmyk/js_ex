@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    section {
+      overflow: hidden;
+    }
+
+    article {
+      position: relative;
+      width: 100%;
+      height: 900px;
+    }
+
+    .article1 {
+      background-color: red;
+    }
+
+    .article1 h1 {
+      font-size: 200px;
+      text-align: center;
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      transform: translate(0, -50%);
+      color: #fff;
+      opacity: 0;
+      transition: 0.5s;
+    }
+
+    .article1.on h1 {
+      opacity: 1;
+    }
+
+    .article2 {
+      background-color: green;
+    }
+
+    .left1 {
+      font-size: 60px;
+      color: #fff;
+      text-align: center;
+      position: absolute;
+      left: -500px;
+      top: 20%;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .left1.on {
+      left: 200px;
+    }
+
+    .right1 {
+      font-size: 60px;
+      color: #fff;
+      text-align: center;
+      position: absolute;
+      right: -500px;
+      bottom: 20%;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .right1.on {
+      right: 200px;
+    }
+
+    .article3 {
+      background-color: blue;
+    }
+
+    .article4 {
+      background-color: orange;
+    }
+
+    .article5 {
+      background-color: brown;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <article class="article1">
+      <h1>Lorem!!</h1>
+    </article>
+    <article class="article2">
+      <div class="left left1">Ipsum</div>
+      <div class="right right1">Dolor!</div>
+    </article>
+
+    <article class="article3">
+
+    </article>
+    <article class="article4">
+
+    </article>
+    <article class="article5">
+
+    </article>
+  </section>
+
+  <script>
+    addEventListener('scroll', (e) => {
+      console.log(window.scrollY)
+      if(scrollY >= 100){
+        document.querySelector('.article1').classList.add('on');
+      }
+      if(scrollY >= 500){
+        document.querySelector('.left1').classList.add('on');
+      }
+      if(scrollY >= 1000){
+        document.querySelector('.right1').classList.add('on')
+      }
+    })
+  </script>
+</body>
+
+</html>

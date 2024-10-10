@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <title>sample5</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #clock {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 100px auto 0;
+    }
+
+    #clock img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+    }
+
+    .sec {
+      width: 3px;
+      height: 140px;
+      transform-origin: 50% 100%;
+      position: absolute;
+      right: 50%;
+      top: 3%;
+      background-color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="clock">
+    <img alt="clock" src="clock/clock.png" />
+    <img alt="hour" src="clock/h.png" class="hour" />
+    <img alt="min" src="clock/m.png" class="min" />
+    <div class="sec"></div>
+  </div>
+  <div class="digital"></div>
+  <SCript>
+  function clock(){
+    const today = new Date();
+    let hour = today.getHours();
+    const minute = today.getMinutes();
+    const second = today.getSeconds();
+    const milliSecond = today.getMilliseconds();
+
+    //hour가 12보다 크면 12를 빼서 0~11범위로 만듦
+    if(hour > 11) hour -= 12;
+
+    //초침의 각도 계산, 초당 6도(360도/60초)이고, 밀리초를 추가하여 좀더 정밀한 각도를 계산
+    const degreeOfSecond = (second * 6) + (milliSecond * 6 / 1000);
+    const degreeOfMinute = (minute * 6 )+ degreeOfSecond / 60
+    const degreeOfHour = (hour * 30) + degreeOfMinute / 12
+
+    const needles = document.querySelector('#clock').children;
+
+    needles[1].style.transform = `rotate(${degreeOfHour}deg)`;
+    needles[2].style.transform = `rotate(${degreeOfMinute}deg)`;
+    needles[3].style.transform = `rotate(${degreeOfSecond}deg)`;
+
+    let redNeedle = 0;
+    let greenNeedle = 0
+    let blueNeedle = 0
+
+    if(degreeOfSecond < 90){
+      //각도가 커질수록 빨간색이 강해짐
+      redNeedle = Math.round(255 * degreeOfSecond / 90)
+    }else if (90 <= degreeOfSecond && degreeOfSecond < 180){
+      redNeedle = Math.round(255 -(255 * (degreeOfSecond - 90)  / 90))
+      greenNeedle = Math.round(255 * (degreeOfSecond - 90) / 90)
+    }else if (180 <= degreeOfSecond && degreeOfSecond < 270){
+      greenNeedle = Math.round(255 * (degreeOfSecond - 180) / 90)
+      blueNeedle = Math.round(255 -(255 * (degreeOfSecond - 270)  / 90))
+    }
+    needles[3].style.background = `rgb(${redNeedle}, ${greenNeedle}, ${blueNeedle})`
+  }
+  setInterval(clock,1000/60)
+  </SCript>
+
+</body>
+
+</html>

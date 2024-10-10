@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var date = new Date(2024,9,10);
+    var year = date.getFullYear();
+    var christmas = new Date(2024,11,25);
+    
+var diffTime = christmas - date;
+var diffDay = diffTime / (1000*60*60*24);
+console.log('크리스마스까지 남은날: ' + Math.ceil(diffDay))
+  </script>
+</body>
+</html>
