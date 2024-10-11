@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>버튼 상태 변경</title>
+	<style>
+		body {
+	    text-align: center;
+	    padding: 2rem;
+		}
+		label {
+	    display: block;
+	    margin-bottom: 1rem;
+		}
+		#btn {
+	    background: #0bd;
+	    padding: .75rem 1rem;
+	    border-radius: 8px;
+		}
+		#btn:disabled {
+	    background: #ccc;
+		}
+	</style>
+</head>
+<body>
+  <label><input id="check" type="checkbox"> 이용 약관에 동의</label>
+  <input id="btn" type="submit" value="전송" disabled>
+   <script>
+     const log = console.log
+     const isAgreed = document.querySelector('#check')
+     const btn = document.querySelector('#btn')
+     //isAgreed.addEventListener('change', ()=>{ -->
+    //   log(btn.disabled)
+    //   if(isAgreed.checked === true)
+    //   btn.disabled = false;
+    btn.disabled = !isAgreed.checked;
+
+    // })
+    // else{
+    // btn.disabled = true  
+    // }
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>animate</title>
+	<style>
+		.box1 {
+			position: relative;
+			width: 100px;
+			height: 100px;
+			background-color: red;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box box1">
+		상자1
+	</div>
+
+  <script>
+const box1 = document.querySelector(".box")
+let i = -90; //애니메이션의 진행 상태를 나타내는 변수, -90으로 초기화
+//이값은 나중에 사인함수의 입력으로 사용되며 애니메이션의 진행정도를 나타냄
+
+function box1Animation(){
+  //현재 i값은 사인 함수에 넣어 계산, 값은 0에서 1 사이의 범위를 가짐
+  const ease = ((Math.sin(i * Math.PI / 180 )) + 1) / 2
+
+  box1.style.left = `${0 + (500 * ease)}px`
+//i값을 매 프레임마다 증가 (1초마다 60번)
+  i + 180/60
+
+  if (i >= 90){
+    i = 90;
+    return clearInterval(id)
+
+  }
+}
+const id = setInterval(box1Animation, 1000/50);
+  </script>
+</body>
+
+</html>

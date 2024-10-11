@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메뉴 목록</title>
+  
+  <!--css reset-->
+  <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+  
+  <!--구글 폰트 링크-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+  <style>
+	  body {
+	    text-align: center;
+	    /*구글폰트 적용*/
+	    font-family: 'Noto Serif KR', serif;
+		}
+		#menu {
+	    display: grid;
+	    gap: 30px;
+	    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	    max-width: 1020px;
+	    margin: auto;
+	    padding: 30px;
+		}
+		img {
+	    width: 100%;
+	    aspect-ratio: 4 / 3;
+	    object-fit: cover;
+		}
+		h1 {
+	    margin: 30px 0;
+	    font-size: 40px;
+		}
+		h2 {
+	    margin-top: 6px;
+		}
+  </style>
+
+</head>
+<body>
+    <h1>Fruit Juice</h1>
+    <div id="menu"></div>
+
+    <script>
+      const menu = document.querySelector("#menu")
+      const lists = [
+    {
+      name: '딸기',
+      img: 'strawberry.jpg',
+      price: 4500,
+    },
+    {
+      name: '라임',
+      img: 'lime.jpg',
+      price: 4000,
+    },
+    {
+      name: '망고',
+      img: 'mango.jpg',
+      price: 5000,
+    },
+    {
+      name: '레몬',
+      img: 'lemon.jpg',
+      price: 4000,
+    },
+    {
+      name: '무화과',
+      img: 'fig.jpg',
+      price: 5000,
+    },
+    {
+      name: '사과',
+      img: 'apple.jpg',
+      price: 4000,
+    },
+];
+      for(const item of lists){
+        console.log(item)
+        const {name, img, price} = item;
+        //img경로는 lists배열요소의 객체안에 img프로퍼티로 저장되어 있으므로 item.img로
+        //해당 경로를 읽어와야한다.
+        const content = `<div>
+          <img src="/image/images/${img}" alt="">
+          <h2>${name}</h2>
+          <p>${price}</p>
+          </div>`;
+        //content를 html의 요소로 가장 나중에 나오는 자식 요소의 뒤에 삽입
+        menu.insertAdjacentHTML('beforeend', content)
+
+      }
+    </script>
+</body>
+</html>

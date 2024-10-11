@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>슬라이드 폼</title>
+  <script src="https://kit.fontawesome.com/632d3e2496.js" crossorigin="anonymous"></script>
+  <style>
+    *{margin:0; padding:0;}
+    ul,li{list-style:none;}
+    a{text-decoration: none; color:inherit;}
+
+    #gallery{
+      width:1080px;
+      margin:100px auto;
+      outline:1px solid red;
+      position:relative;
+      overflow: hidden;
+    }
+    #gallery > .box{
+      width:1800px;
+      display:flex;
+      transform:translateX(-360px);
+    }
+    #gallery > .box > li{
+      width:360px;
+      padding:0 80px;
+      text-align: center;
+      color:#666;
+      box-sizing: border-box;
+    }
+    .box li img{
+      border-radius: 50%;
+      margin-bottom:30px;
+    }
+    .box li h2{
+      font-size:20px;
+    }
+    /*p요소중에서 첫번째p요소*/
+    .box li p:nth-of-type(1){
+      font-size:14px;
+    }
+    .box li p{
+      margin:20px 0;
+    }
+    .icon i{
+      font-size:30px;
+      margin:0 5px;
+    }
+    /*화살표 버튼*/
+    .left,
+    .right{
+      position:absolute;
+      top:50%; transform:translateY(-50%);
+      background-color: transparent;
+      border:0;
+      font-size:40px;
+      cursor:pointer;
+      color:#666;
+    }
+    .right{
+      right:0;
+    }
+  </style>
+</head>
+<body>
+  <section id="gallery">
+    <ul class="box">
+      <li>
+        <img src="/image/Frame1.png" alt="">
+        <h2>Segment Title</h2>
+        <p>Lorem ipsum dolor sit amet</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit consectetur.</p>
+        <div class="icon">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </li>
+      <li>
+        <img src="/image/Frame2.png" alt="">
+        <h2>Segment Title</h2>
+        <p>Lorem ipsum dolor sit amet</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit consectetur.</p>
+        <div class="icon">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </li>
+      <li>
+        <img src="/image/Frame3.png" alt="">
+        <h2>Segment Title</h2>
+        <p>Lorem ipsum dolor sit amet</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit consectetur.</p>
+        <div class="icon">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </li>
+      <li>
+        <img src="/image/Frame4.png" alt="">
+        <h2>Segment Title</h2>
+        <p>Lorem ipsum dolor sit amet</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit consectetur.</p>
+        <div class="icon">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </li>
+      <li>
+        <img src="/image/Frame5.png" alt="">
+        <h2>Segment Title</h2>
+        <p>Lorem ipsum dolor sit amet</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit consectetur.</p>
+        <div class="icon">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </li>
+    </ul><!--box-->
+    <!--화살표 버튼-->
+    <button class="left" type="button"><i class="fas fa-chevron-left"></i></button>
+    <button class="right" type="button"><i class="fas fa-chevron-right"></i></button>
+  </section>
+
+  <script>
+ //left버튼 클릭시
+ const left = document.querySelector('.left');//left버튼
+    const slide = document.querySelector('.box');//슬라이드 시킬 요소
+    //첫번째 이미지 요소의 크기를 imgWd에 할당
+    let imgWd = slide.children[0].getBoundingClientRect().width;
+    console.log(imgWd)
+    let eventhandler = true;//event중복적용을 막아줄 변수
+
+    //left버튼에 클릭 이벤트 리스너를 등록
+    left.addEventListener("click", () => {
+      if(eventhandler == true){
+        eventhandler = false;//eventhandler를 false로 변경하여 이벤트가 중복적용되는 것을 막아줍니다
+        const last = slide.lastElementChild;//slide의 마지막 자손요소를 last변수에 할당
+        //slide에 마지막 자손요소를 첫번째 자손 위치로 보내줌
+        slide.insertAdjacentElement('afterbegin', last)
+
+        let current = -imgWd;//초기 위치값
+        slide.style.left = `${current}px`;//slide의 left값을 current값으로 적용(한개 요소의 크기만큼 왼쪽으로 이동시킴)
+
+        let timer = setInterval(function(){
+          current += 30;//current변수에 30을 더하여 다시 current변수에 할당
+          if(current >= 0) current = 0;//current값이 0보다 커지면 0으로 고정
+          slide.style.left = `${current}px`;//slide의 left값을 current로 적용
+          if(current == 0){
+            clearTimeout(timer);//timer변수에 할당한 반복함수를 종료
+            eventhandler = true;//eventhandler변수를 true로 할당하여 다시 클릭이벤트가 실행될 수 있도록 함
+          }
+
+        },1000 / 60);//1초에 60프레임 간격으로 호출
+      }
+    })
+    const right = document.querySelector('.right')
+    right.addEventListener('click', () => {
+      if (eventhandler == true){
+        eventhandler = false;
+        const first = slide.firstElementChild;
+
+        let distance = -imgWd; //이동할 위치값
+        let current = 0; //현재 위치값
+        let timer = setInterval(function(){
+          current -= 30;
+          //current값이 distance(이동할 위치)값보다 작아지면 current값을 distance로 고정
+          if(current < distance) current = distance;
+          slide.style.left = `${current}px`;
+          if(current == distance){
+            clearInterval(timer);
+            slide.insertAdjacentElement('beforeend', first);
+            slide.style.left = "0px";
+            eventhandler = true
+          }
+        },1000/60)
+      }
+    })
+  </script>
+</body>
+</html>
