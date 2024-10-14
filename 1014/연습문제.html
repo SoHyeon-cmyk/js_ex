@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>연습문제</title>
+	<style>
+		fieldset {
+			margin: 10px;
+		}
+
+		legend {
+			padding: 5px;
+			background-color: lightblue;
+		}
+
+		input[type="text"] {
+			box-sizing: border-box;
+			padding: 5px;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+
+	<fieldset>
+		<legend>alert()</legend>
+		<input type="text" name="alert" value="클릭하세요">
+	</fieldset>
+
+	<fieldset>
+		<legend>confirm()</legend>
+		<button type="button">confirm()</button>
+		<hr>
+		<input type="text" name="confirm" readonly="readonly">
+	</fieldset>
+
+	<fieldset>
+		<legend>prompt()</legend>
+		<input type="button" value="prompt()">
+		<hr>
+		<input type="text" name="prompt" disabled="disabled">
+	</fieldset>
+
+	<script>
+		const myAlert = document.querySelector('input');
+		myAlert.onclick = function () {
+			alert(this.value);
+		}
+		const myConfirm = document.querySelector('button');
+		myConfirm.onclick = function () {
+			let ans = document.querySelector('input[name="confirm"]');
+    if (confirm('자바스크립트 재밌고 쉽죠?')) {
+				ans.value = '겠냐고요';
+			} else {
+				ans.value = '조금만 더 힘을 내요~';
+			}
+		}
+		const myPrompt = document.querySelector('input[type="button"]');
+myPrompt.onclick = function () {
+				let yourname = prompt('이름을 입력하세요', '홍길동');
+				const ans = document.querySelector('input[name="prompt"]');
+    if (yourname == null || yourname == '') {
+					ans.value = '이름을 입력하지 않았어요';
+				} else {
+					ans.value = yourname + ' 님 안녕하세요~';
+				}
+			}
+	</script>
+
+</body>
+
+</html>

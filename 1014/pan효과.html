@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      body{ background-color:#033; }
+      div{
+          padding:0;
+          width:800px;
+          height:300px;
+          border:1px solid #999;
+          overflow:hidden;
+          margin:auto;
+      }
+      /*이미지의 position속성을 설정하여 위치를 이동시킬수 있게 합니다.(left,top등을 사용하여 이동)*/
+      img{
+          position:relative;
+          width:1400px;
+          height:840px;
+          top:0; left:0;
+          transition:all 1s ease-in-out;
+      }
+    </style>
+</head>
+<body>
+  <div> <img src="/image/bg_pan.jpg" alt=""> </div>
+
+  <script>
+    const img = document.querySelector("img");
+    const imgw = img.width;
+    const imgh = img.height;
+    console.log(imgw,imgh)
+
+    function start(){
+      //800-imgw = -600(-600 ~0 사이의 숫자가 랜덤으로 반환)
+      let posx = Math.ceil(Math.random()*(800-imgw));
+      let posy = Math.ceil(Math.random()*(300-imgh));
+
+    //delay 2~7s
+      let delayTime = Math.ceil(Math.random()*5000+2000);
+
+      //이미지요소와 left속성값과 top속성값을 posx와 posy로 변경
+      img.style.left = posx +"px";
+      img.style.top = posy +"px";
+      //delayTime변수에 담겨진 시간만큼 지난 후에 start함수를 호출하여
+    //위치이동이 계속 실행되도록 함.
+      setTimeout(function(){
+        start();
+      },delayTime)
+
+    }
+    start()
+  </script>
+</body>
+</html>

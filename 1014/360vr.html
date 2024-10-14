@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>360vr</title>
+</head>
+<body>
+  <div id="slideList"></div>
+  <input type="range" id="slider" max="100" min="0">
+
+  <script>
+  for(let i = 0; i < 120; i++){
+    const p = document.createElement("p")
+    const img = document.createElement("img")
+    img.setAttribute("src", `/image/360VR/Picanto_Green_${i}.jpg`);
+    img.setAttribute("alt", `image${i}`);
+
+    p.appendChild(img);
+    document.querySelector("#slideList").appendChild(p);
+  }
+  
+  const imageList = document.querySelectorAll("#slideList > p");
+  const slider = document.querySelector("#slider");
+  imageList.forEach((image, index )=> {
+    image.style.display = "none";
+  })
+  imageList[0].style.display = "block"
+
+  let start = 0;
+  let end = imageList.length - 1;
+
+  slider.addEventListener("input", () =>{
+    let sliderValue = slider.value;
+    let imgIndex = Math.round((sliderValue / 100) * end);
+    console.log(imgIndex)
+
+    imageList.forEach(img =>{
+      img.style.display = "none"
+    });
+    imageList[imgIndex].style.display = "block"
+  })
+  </script>
+</body>
+</html>

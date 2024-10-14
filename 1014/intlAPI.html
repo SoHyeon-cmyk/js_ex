@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const views = 1234567;
+    //NumberFormat()의 첫번째 인수로 언어선택 또는 navigator.language로 브라우저에서
+    //설정한 언어를 선택할 수 있음, 두번째 인자로 옵션 전달
+    const fomatter = new Intl.NumberFormat(navigator.language,{
+      notation:"compact",
+      compactDisplay:"long"
+    })
+    document.write(fomatter.format(views) + "<br>")
+  </script>
+</body>
+</html>

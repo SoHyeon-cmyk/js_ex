@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button,
+    select,
+    textarea {
+      padding: 5px 10px;
+      font-size: 16px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body>
+  <button type="button">현재 페이지 URL</button>
+  <select name="gosite">
+    <option value="">::선택이동::</option>
+    <option value="nate.com">네이트</option>
+    <option value="daum.net">다음</option>
+    <option value="naver.com">네이버</option>
+    <option value="google.com">구글</option>
+  </select>
+  <hr>
+  <textarea name="url" cols="40" rows="3"></textarea>
+
+  <script>
+    const btn = document.querySelector('button')
+    const move = document.querySelector('select[name = "gosite"]')
+
+    move.onchange = function(){
+      
+    }
+  </script>
+</body>
+
+</html>

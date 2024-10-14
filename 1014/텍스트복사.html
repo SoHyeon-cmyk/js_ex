@@ -1,0 +1,27 @@
+!<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- The text field -->
+  <input type="text" value="Hello World" id="myInput">
+
+  <!-- The button used to copy the text -->
+  <button onclick="myFunction()">Copy text</button>
+
+  <script>
+    function myFunction(){
+
+      const copyText = document.getElementById("myinput")
+
+      navigator.clipboard.writeText(copyText.value)
+    }
+  </script>
+</body>
+
+</html>
