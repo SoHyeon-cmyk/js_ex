@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 애니메이션과 Web Animations API</title>
+    <style>
+      body{
+        text-align: center;
+        padding:2rem;
+      }
+      .animation-css{
+        animation:zoom 2s linear infinite;
+      }
+      @keyframes zoom {
+        0%{ scale:1;}
+        50%{ scale:2;}
+        100%{ scale:1;}
+      }
+      #heading{
+        position: relative;
+        top:50px;
+      }
+    </style>
+</head>
+<body>
+    <h2 class="animation-css">CSS</h2>
+    <h2 class="animation-js">JavaScript</h2>
+    <h1 id="heading">자바스크립트로 애니메이션</h1>
+    <script>
+      const heading = document.querySelector(".animation-js");
+
+      heading.animate({
+        scale: [1, 2, 1] //애니메이션 효과를 적용한 속성과 속성값
+      }, {
+        duration: 2000,//2초동안 애니메이션 효과 적용
+        iterations: Infinity, //무한 반복
+      })
+
+      const head = document.querySelector("#heading");
+
+      const keyframes = {
+        opacity:[0, 1],//[시작값, 종료값]
+        translate:['0 50px', 0]
+      };
+      const options = {
+        duration: 2000,
+        easing: 'ease',
+      }
+
+      //animate(움직이는 내용, 재생 시간)
+      head.animate(keyframes, options);
+    </script>
+</body>
+</html>

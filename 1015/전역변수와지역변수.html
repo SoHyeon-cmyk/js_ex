@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var starX = 1;
+function printStar(Num){
+    for(starX = 1; starX <= Num; starX++){
+        printStarX(starX);
+    }
+}     
+function printStarX(Num){
+    var starX;
+    for(starX = 1; starX <= Num; starX++){
+        console.log('*');
+    }
+}
+printStar(3);
+//네임스페이스객체에 또 다른 네임스페이스 객체를 프로퍼티를 추가해서 네임스페이르르
+//계층적으로 구성할 수 있따.
+
+var Counter = (function(){
+  //프라이빗 멤버(외부에 노추로디는 프로퍼티를 '퍼블릭 멤버'라고함)
+  var num = 0;
+
+  //외부로 공개할 데이터나 메서드를 프로퍼티로 추가한 객체를 반환함
+  return{
+    increase(){
+      return ++num; //num값을 1증가시켜 반환
+    },
+    decrease(){
+      return --num;//num값을 1감소시켜 반환
+    }
+  }
+}())
+//private변수는 외부로 노출되지 않는다.
+console.log(Counter.num)
+
+console.log(Counter.increase)
+console.log(Counter.increase)
+console.log(Counter.increase)
+  </script>
+  
+</body>
+</html>

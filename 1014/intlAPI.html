@@ -11,10 +11,31 @@
     //NumberFormat()의 첫번째 인수로 언어선택 또는 navigator.language로 브라우저에서
     //설정한 언어를 선택할 수 있음, 두번째 인자로 옵션 전달
     const fomatter = new Intl.NumberFormat(navigator.language,{
-      notation:"compact",
-      compactDisplay:"long"
+      notation:"compact", //뒷자리 숫자 생략
+      style: "currency",//통화
+      currency: "KRW"//화폐
     })
     document.write(fomatter.format(views) + "<br>")
+
+    //상대시간 나타내기
+    const formatter2 = new  Intl.RelativeTimeFormat('ko', {
+      
+      numeric:"auto"
+    })
+
+    //기준을 day, hour, minute, second, month,, quarter(분기)로 설정 가능
+    document.write(formatter2.format(1,'day')+ "<br>");
+    document.write(formatter2.format(2,'day')+ "<br>");
+    document.write(formatter2.format(3,'day')+ "<br>");
+    document.write(formatter2.format(4,'day')+ "<br>");
+    document.write(formatter2.format(-1,'day')+ "<br>");
+
+    //지나간 날짜 계산
+
+    const today = new Date();
+    const stared = new Date(2024,9,1)
+    const daysPassed = Math.ceil((stared-today) / (1000*60*60*24))
+    document.write(formatter2.format(daysPassed, 'day'))
   </script>
 </body>
 </html>
