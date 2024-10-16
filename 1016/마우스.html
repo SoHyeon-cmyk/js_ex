@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+     *{margin:0; padding:0;}
+
+#works{
+  width:1200px;
+  margin:auto;
+  display:flex;
+  position:relative;
+}
+    #works > .box{
+      width: 300px;
+      height: 280px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #works > .box:nth-of-type(1){
+      background-image: url(/image/overlay/image01.jpg);
+    }
+    #works > .box:nth-of-type(2){
+      background-image: url(/image/overlay/image02.jpg);
+    }
+    #works > .box:nth-of-type(3){
+      background-image: url(/image/overlay/image03.jpg);
+    }
+    #works > .box:nth-of-type(4){
+      background-image: url(/image/overlay/image04.jpg);
+    }
+
+    #works >.overlay{
+      width: 300px;
+      height: 280px;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      z-index: 1;
+      /* 포인터 이벤트가 전달되지 않도록 함 */
+      pointer-events: none;
+      transition: all .3s ease;
+    }
+
+    #works .box h1{
+      color: aliceblue;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+    }
+    #works .box:hover h1{
+      opacity: 1;
+      animation: scale .5s;
+    }
+    @keyframes scale{
+      50%{scale:1.5;}
+    }
+  </style>
+</head>
+<body>
+  <section id="works">
+    <div class="overlay"></div>
+    <article class="box">
+      <h1>TEXT</h1>
+    </article>
+    <article class="box">
+      <h1>TEXT</h1>
+    </article>
+    <article class="box">
+      <h1>TEXT</h1>
+    </article>
+    <article class="box">
+      <h1>TEXT</h1>
+    </article>
+  </section>
+
+  <script>
+    const boxes = document.querySelectorAll(".box");
+    const overlay = document.querySelector('.overlay')
+    const boxWd = boxes[0].offsetWidth;
+// 모든 박스요소에 mouseover이벤트리스너 추가
+    boxes.forEach((box,idx) => box.addEventListener('mouseover', ()=>{
+      overlay.style.opacity = 1;
+      // overlay의 left값을 boxWd+idx로 적용하여 위치를 이동시킴
+      overlay.style.left = boxWd * idx + "px";
+    }))
+    // 모든 박스요소에 mouseout이벤트 리스터추가
+    boxes.forEach((box, idx) => box.addEventListener('mouseout', ()=>{
+      overlay.style.opacity = 0
+    }))
+  </script>
+</body>
+</html>
