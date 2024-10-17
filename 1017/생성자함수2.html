@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<script>
+  
+  //생성자 함수 내부의 this는 생성자 함수가 생성할 인스턴스를 가르킴
+  function Circle(radius){
+    //this에 바인딩되어있는 인스턴스 초기화
+    this.radius = radius; 
+    //바인딩: 식별자와 값을 연결하는 과정을 의미한다
+    this.getDiameter = function(){
+      return 2 * this.radius;
+    }
+//완성도니 인스턴스가 바인딩된 this를 암묵적으로 반환
+
+  }
+
+//인스턴스의 생성 circle 생성자 함수는 암묵적으로 this를 반환
+const circle1 = new Circle(5); //반지름이 5인 circle객체 생성
+const circle2 = new Circle(10); //반지름이 10인 circle객체 생성
+
+console.log(circle1.getDiameter())
+console.log(circle2.getDiameter())
+</script>
+
+</body>
+</html>

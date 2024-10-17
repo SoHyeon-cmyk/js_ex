@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>커스텀 select</title>
+
+  <style>
+    *{box-sizing: border-box;}
+
+    .selectBox{
+      position: relative;
+      width: 150px;
+      height: 35px;
+      background-color: lightcoral;
+      cursor: pointer;
+    }
+    .selectBox::after{
+      content: "";
+      position: absolute;
+      width: 0; height: 0;
+      border: 6px solid transparent;
+      border-top-color: white;
+      top: 14px;
+      right: 10px;
+    }
+
+    .selectBox.active::after{
+      top: 7px;
+      border-color: transparent;
+      border-bottom-color:white ;
+
+    }
+    .selectBox .label{
+      text-align: left;
+      border: 0;
+      width: inherit;
+      height: inherit;
+      background-color: transparent;
+      padding-left: 15px;
+      color: aliceblue;
+      cursor: pointer;
+    }
+
+    .selectBox .optionList{
+      list-style-type: none;
+      padding: 0;
+      position: absolute;
+      top: 28px;
+      left: 0;
+      width: 100%;
+      background-color: lightpink;
+      border-radius: 6px;
+      overflow: hidden;
+      max-height: 0;
+      transition: .3s ease-in;
+    }
+    .selectBox.active .optionList{
+      min-height: 300px;
+      overflow-y: auto;
+    }
+
+    .selectBox .optionItem{
+      border-bottom: 1px dashed rgb(133, 42, 62);
+      padding: 5px 15px;
+      transition: .2s;
+    }
+    .selectBox .optionItem:hover{
+      background-color:deeppink;
+      color: aliceblue;
+    }
+
+    .selectBox .optionItem:last-child{
+      border-bottom: 0;
+    }
+    .selectBox .optionList::-webkit-scrollbar{
+      width: 6px;
+    }
+    .selectBox .optionList::-webkit-scrollbar-track{
+      width: 6px;
+      background-color: transparent;
+    }
+    .selectBox .optionList::-webkit-scrollbar-thumb{
+      width: 6px;
+      background-color: #303030;
+      border-radius: 5px;
+    }
+    .selectBox .optionList::-webkit-scrollbar-thumb:hover{
+      width: 6px;
+      background-color: #888888;
+      border-radius: 5px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="selectBox">
+    <button class="label">Select Car:</button>
+    <ul class="optionList">
+      <li class="optionItem">Audi</li>
+      <li class="optionItem">BMW</li>
+      <li class="optionItem">Ford</li>
+      <li class="optionItem">Jaguar</li>
+      <li class="optionItem">Jaguar</li>
+      <li class="optionItem">Jaguar</li>
+      <li class="optionItem">Jaguar</li>
+      <li class="optionItem">Jaguar</li>
+      <li class="optionItem">Jaguar</li>
+      <li class="optionItem">Jaguar</li>
+      <li class="optionItem">Jaguar</li>
+    </ul>
+  </div>
+
+  <script>
+
+const label = document.querySelector('.label');
+const options = document.querySelectorAll('.optionItem')
+
+// 클릭한 옵션의 텍스트를 라벨 안에 넣음
+const handleSelect = (item) => {
+  label.parentNode.classList.remove('active')
+  label.innerHTML = item.textContent; //옵션의 텍스트를 label의 안쪽에 넣어줌
+}
+
+// 옵션태그 클릭시 클릭한 옵션을 handleSelect함수로 넘김
+options.forEach(option => option.addEventListener('click', ()=>{
+  handleSelect(option)
+}))
+
+
+// 라벨클릭시 옵션목록 열림/닫힘
+label.addEventListener('click', ()=>{
+  label.parentNode.classList.toggle('active')
+})
+  </script>
+</body>
+
+</html>

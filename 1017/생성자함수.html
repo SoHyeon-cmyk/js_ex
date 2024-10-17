@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<script>
+  //object 생성자 함수
+  //new 연산자와 함꼐 object생성자 함수를 호춯하면 빈 객체를 생성하여 반환
+const log = console.log;
+  //빈 객체의 생성
+  const person = new Object();
+  log(person)
+
+  //프로퍼티 추가
+  person.name = "Lee"
+  log(person)
+  person.sayHello = function(){
+    console.log('hi my name is ' + this.name);
+  }
+  person.sayHello();
+</script>
+
+</body>
+</html>

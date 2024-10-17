@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=
+  , initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+<script>
+function getThisBinding(){
+  return this;
+}
+const thisArg = {a:1};
+console.log(getThisBinding.bind(thisArg));
+getThisBinding
+//bind메서드는 함수를 호출하지는 않으므로 명시적으로 호출
+
+const person = {
+  name:'name',
+  foo(callback){
+    setTimeout((callback) => {
+      setTimeout(callback.bind(this))
+    }, 100);
+  }
+}
+
+</script>
+  
+
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <audio id="myAudio"></audio>
+
+  <button class="aBtn" type="button">시작(play)</button>
+  <button class="aBtn" type="button">멈춤(pause)</button>
+
+  <hr>
+
+  <audio controls>
+    <source src="happybirthday.ogg" type="audio/ogg">
+    <source src="happybirthday.mp3" type="audio/mpeg">
+    사용하는 브라우저가 HTML5(audio태그)를 지원하지 않습니다.
+  </audio>
+
+  <script>
+    const audio = document.querySelector("#myAudio")
+    const btn1 = document.querySelector("#abtn")
+    btn1.addEventListener('click', ()=>{
+      audio.scr = 'images.happybirthday,\.mp3'
+      auto.play();
+    })
+
+    aBtns[1].addEventListener('click', ()=>{
+      audio.pause();
+    })
+
+    const video = document.querySelector('#myVideo')
+    const vBtns = document.querySelectorAll('.vBtn')
+    video.poster = 'images/pic_1.jpg'
+
+    vBtns[0].addEventListener('click', ()=>{
+      video.currentTime=0
+      video.play();
+    })
+    vBtns[1].addEventListener('click',()=>{
+      video.pause
+    })
+  </script>
+</body>
+
+</html>
