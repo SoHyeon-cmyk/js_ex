@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box1{
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box box1">
+    상자1
+  </div>
+
+  <script>
+    const box1 = document.querySelector(".box1");
+
+    let i = -90;
+
+    function box1Animation(){
+      //i를 도(deg)에서 라디안(radian)값으로 변환한 후, 사인 함수를 사용하여 값을 구함
+      //그 사이를 0에서 1사이로 정규화하형 부드러운 전환 효과를 만듭니다.
+      const ease = ((Math.sin(i * Math.PI / 180)) + 1) / 2;
+
+      box1.style.left = `${0 + (500*ease)}px`,
+      box1.style.width = `${100 + (100*ease)}px`,
+      box1.style.height = `${100 + (100*ease)}px`,
+      box1.style.opacity = `${100 - (.5*ease)}px`
+
+      i += 180/60; //60fps 모니터에 맞추어서 프레임을 60으로 나눔 (결과적으로 3번 증가)
+
+      if(i >= 90){
+        i = 90;
+        clearInterval(id)
+      }
+    }
+
+    let id = setInterval(box1Animation, 1000/60);
+
+    //60fps모니터에 맞추어서 프레임을 60으로 나눔
+  </script>
+</body>
+</html>

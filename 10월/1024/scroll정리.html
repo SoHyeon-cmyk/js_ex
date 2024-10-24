@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {}
+
+    h1#indicator {
+      position: fixed;
+      right: 10px;
+      bottom: 10px;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    nav {
+      position: absolute;
+      top: 100px;
+      width: 100%;
+      height: 100px;
+      background-color: rgba(0, 0, 0, .8);
+    }
+
+    nav.fixed {
+      position: fixed;
+      top: 0px;
+      background-color: rgba(0, 0, 0, .3);
+    }
+
+    nav ul {
+      width: 1000px;
+      height: 100px;
+      margin: 0 auto;
+    }
+
+    nav ul li {
+      float: left;
+    }
+
+    nav ul li a {
+      display: block;
+      width: 166px;
+      height: 100px;
+      line-height: 100px;
+      font-size: 1.5em;
+      color: #fff;
+      text-align: center;
+    }
+
+    nav ul li.on a {
+      color: orange;
+    }
+
+    section>div {
+      height: 700px;
+    }
+
+    section>div p {
+      color: #fff;
+      padding: 8px;
+    }
+
+    #area1 {
+      background-color: red;
+    }
+
+    #area2 {
+      background-color: green;
+    }
+
+    #area3 {
+      background-color: blue;
+    }
+
+    #area4 {
+      background-color: lime;
+    }
+
+    #area5 {
+      background-color: orange;
+    }
+
+    #area6 {
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="indicator">스크롤위치값: <span id="sTop">0</span></h1>
+  <nav>
+    <ul>
+      <li class="on"><a href="#">Mainmenu1</a></li>
+      <li><a href="#">Mainmenu2</a></li>
+      <li><a href="#">Mainmenu3</a></li>
+      <li><a href="#">Mainmenu4</a></li>
+      <li><a href="#">Mainmenu5</a></li>
+      <li><a href="#">Mainmenu6</a></li>
+    </ul>
+  </nav>
+  <section>
+    <div id="area1" class="main">
+      <p>area1</p>
+    </div>
+    <div id="area2" class="main">
+      <p>area2</p>
+    </div>
+    <div id="area3" class="main">
+      <p>area3</p>
+    </div>
+    <div id="area4" class="main">
+      <p>area4</p>
+    </div>
+    <div id="area5" class="main">
+      <p>area5</p>
+    </div>
+    <div id="area6" class="main">
+      <p>area6</p>
+    </div>
+  </section>
+
+  <script>
+    setTimeout(function(){
+      scrollTo(0,0);
+
+    },50)
+
+    const contents = document.querySelectorAll("section > div");
+    const menu = document.querySelectorAll("nav ul li");
+    const sTop = document.querySelector("#sTop");
+    const nav = document.querySelector("nav")
+
+    //브라우저 크기 조정시 각 섹션의 높이를 화면 높이로 설정
+    const updateContentHeight = () =>{
+      for(const item of contents){//각 섹션을 순회하면서 window의 높이값으로 섹션의 높이를 설정
+        item.style.height = `${window.innerHeight}px`
+      }
+    }
+
+    updateContentHeight();
+    //윈도우의 크기가 변경되면 undateContentHeight함수를 다시 호출하여 각 섹션의 높이를 갱신
+    window.addEventListener("resize", updateContentHeight);
+
+
+    //각 섹션의 위치를 저장
+    let sPostion = Array.from(contents).map(content => content.getBoundingClientRect().top)
+    // console.log(sPostion)
+
+    //스크롤 이벤트 발생시 메뉴 고정 및 해당 메뉴 하이라이트
+    window.addEventListener("scroll", (e)=>{
+      //스크롤 이동값을 정수로 출력
+      sTop.innerText = parseInt(`${window.scrollY}`)
+
+      //스크롤 위치가 100px를 초과하면 nav의 fixed클래스를 추가하고, 스크롤 위치가 100픽셀을 초과하지 않으면 nav의 fixed클래스 제거
+      nav.classList.toggle('fixed', scrollY > 100);
+
+      for(let i = 0; i < contents.length; i++){
+        if(scrollY >= sPostion[i]){//현재 스크롤 위치가 sPosition배열의 각 요소보다 크거나 같은지 확인
+          for(let i=0; i < menu.length; i++){
+            menu[i].classList.remove("on")
+          }
+          menu[i].classList.add("on");
+        }
+      }
+    })
+
+    const scrollToAni = (target) => {//클릭한 메뉴와 같은 순번의 contents 의 top 위치
+      let k = -90;
+      const startScroll = scrollY;
+
+      const animate = () => {
+        //k에 k+180/60을 할당 = 180도를 60프레임에 걸쳐 천천히 진행하도록 함.
+        k = Math.min(k + 180 / 60, 90) //k를 90으로 제한
+
+        //easeup 과 easedown을 계산하여 부드러운 애니메이션을 위한 값을 생성
+        const easeUp = (Math.sin(k*Math.PI/180) + 1) / 2; //0~1로 증가
+        const easeDouwn = (Math.sin((k + 180) * Math.PI / 180) + 1) / 2; //1~0으로 감소 
+
+        //계산된 값을 사용하여 스크롤 위치를 설정함
+        scrollTo(0, startScroll * easeDouwn + target * easeUp)
+        if (k >= 90) clearInterval(id)
+      }
+      //animate 함수를 초당 60번 호출
+      let id = setInterval(animate, 1000/60); //k가 90이상이 되면 애니메이션이 멈춤
+    }
+
+    //메뉴클릭시 애니메이션 실행
+    menu.forEach((item, idx) => item.addEventListener("click", (e) =>{
+      e.preventDefault(); 
+      scrollToAni(idx * innerHeight); //scrollToAni 함수를 호출, 이때 인자로 해당메뉴의 순번*브라우저의 높이를 전달
+    }))
+  </script>
+</body>
+
+</html>
