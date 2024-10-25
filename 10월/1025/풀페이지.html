@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.30/fullpage.min.js" integrity="sha512-XjHDYXqFXd3cWle8uxMnQFVcpjzm+mWZfJApBAyREtai0v/jJy9Na+PJlmrnaum7qb4B3BnwKAZd47piZRvoZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.30/vendors/easings.min.js" integrity="sha512-SrKslwu6IjHEo/8mAOtkoUOT3MzHCEOFWktrC8BNtjPuBBYLYjg1y/Marat34uYfOfxDMLEwy8DLArWEVc2i+w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+<!-- 로고 영역	 -->
+<h1>
+  <img src="images/logo.png" alt="">
+</h1>
+<!-- 내비게이션 -->
+<ul id="menu">
+<!-- (li>a)*4 -->
+  <li data-menuanchor="blossom"><a href="#1">Full Blossom</a></li>
+  <li data-menuanchor="colorfull"><a href="#2">Be colorful</a></li>
+  <li data-menuanchor="board"><a href="#3">Time on Board</a></li>
+  <li data-menuanchor="addict"><a href="#4">shiny Addict</a></li>	
+</ul>
+<!-- sns 아이콘 영역 -->
+<!-- ul#sns>(li>a[href=#]>i.fa.fa-)*3 -->
+<ul id="sns">
+  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+  <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+</ul>
+<!-- 전체 컨텐츠 영역 -->
+<div id="fullpage">
+  <!-- 1페이지 영역 -->
+  <!-- (section>(article>p+span)+(img.p$$[src="images/obj$$.png"]*3))*4 -->
+  <section class="section">
+    <!-- 1페이지영역 -->
+    <article>
+      <!-- 페이지 슬로건 영역 -->
+      <p>FULL BLOSSOM</p>
+      <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+    </article>
+    <!-- 전면 이미지 오브젝트 -->
+    <img src="images/obj11.png" alt="" class="p11">
+    <img src="images/obj12.png" alt="" class="p12">
+    <img src="images/obj13.png" alt="" class="p13">
+  </section>
+  <!-- 2페이지 영역 -->
+  <section class="section">
+    <article>
+      <p>BE COLORFUL</p>
+      <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+    </article>
+    <img src="images/obj21.png" alt="" class="p21">
+    <img src="images/obj22.png" alt="" class="p22">
+  </section>
+  <!-- 3페이지 영역 -->
+  <section class="section">
+    <article>
+      <p>TIME ON BOARD</p>
+      <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+    </article>
+    <img src="images/obj31.png" alt="" class="p31">
+    <img src="images/obj32.png" alt="" class="p32">
+    <img src="images/obj33.png" alt="" class="p33">
+  </section>
+  
+  <!-- 4페이지 영역 -->
+  <section class="section">
+    <article>
+      <p>SHINY ADDICT</p>
+      <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+    </article>
+    <img src="images/obj41.png" alt="" class="p41">
+    <img src="images/obj42.png" alt="" class="p42">
+  </section>
+</div>
+
+</body>
+</html>
