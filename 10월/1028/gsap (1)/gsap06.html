@@ -66,43 +66,19 @@
         background: #fff;
         color: #000;
       }
-      #parallax__nav {
-        position: fixed;
-        right: 20px;
-        top: 20px;
-        z-index: 1000;
-        background-color: rgba(0, 0, 0, 0.4);
-        padding: 15px 20px;
-        border-radius: 50px;
-      }
-      #parallax__nav li {
-        list-style: none;
-        display: inline;
-      }
-      #parallax__nav li a {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        padding: 5px;
-        text-align: center;
-        line-height: 30px;
-      }
-      #parallax__nav li a.active {
-        background: #fff;
-        color: #000;
-        border-radius: 50%;
-      }
 
       /* parallax__cont */
       #parallax__cont {
         max-width: 1600px;
         width: 98%;
         margin: 0 auto;
+        /* background-color: rgba(255,255,255,0.1); */
       }
       .parallax__item {
         width: 1000px;
         max-width: 70vw;
         margin: 30vw auto;
+        /* background-color: rgba(255,255,255,0.3); */
         text-align: left;
         margin-right: 0;
         position: relative;
@@ -153,40 +129,40 @@
         transform: scale(1.025);
       }
       #section1 .parallax__item__img {
-      background-image: url(img/images1.jpg);
-    }
-
-    #section2 .parallax__item__img {
-      background-image: url(img/images2.jpg);
-    }
-
-    #section3 .parallax__item__img {
-      background-image: url(img/images3.jpg);
-    }
-
-    #section4 .parallax__item__img {
-      background-image: url(img/images4.jpg);
-    }
-
-    #section5 .parallax__item__img {
-      background-image: url(img/images5.jpg);
-    }
-
-    #section6 .parallax__item__img {
-      background-image: url(img/images6.jpg);
-    }
-
-    #section7 .parallax__item__img {
-      background-image: url(img/images7.jpg);
-    }
-
-    #section8 .parallax__item__img {
-      background-image: url(img/images8.jpg);
-    }
-
-    #section9 .parallax__item__img {
-      background-image: url(img/images9.jpg);
-    }
+	      background-image: url(img/images1.jpg);
+	    }
+	
+	    #section2 .parallax__item__img {
+	      background-image: url(img/images2.jpg);
+	    }
+	
+	    #section3 .parallax__item__img {
+	      background-image: url(img/images3.jpg);
+	    }
+	
+	    #section4 .parallax__item__img {
+	      background-image: url(img/images4.jpg);
+	    }
+	
+	    #section5 .parallax__item__img {
+	      background-image: url(img/images5.jpg);
+	    }
+	
+	    #section6 .parallax__item__img {
+	      background-image: url(img/images6.jpg);
+	    }
+	
+	    #section7 .parallax__item__img {
+	      background-image: url(img/images7.jpg);
+	    }
+	
+	    #section8 .parallax__item__img {
+	      background-image: url(img/images8.jpg);
+	    }
+	
+	    #section9 .parallax__item__img {
+	      background-image: url(img/images9.jpg);
+	    }
       .parallax__item__desc {
         font-size: 4vw;
         line-height: 1.4;
@@ -199,29 +175,26 @@
         margin-left: auto;
         margin-right: -4vw;
       }
-      #parallax__nav li a {
-        width: 80px;
-        transition: all 0.3s;
-      }
-      #parallax__nav.is-active li a {
-        width: 30px;
+      /* 글씨는 인라인 구조이기 때문에 애니메이션을 주기 위해 inline-block을 꼭 주셔야 합니다. */
+      .split > span {
+        display: inline-block;
       }
     </style>
   </head>
   <body>
     <header id="parallax__title">
-      <h1>GSAP Parallax Effect09</h1>
-      <p>GSAP scrollTrigger - 메뉴 이동 효과</p>
+      <h1>GSAP Parallax Effect06</h1>
+      <p>GSAP scrollTrigger - 텍스트 효과</p>
       <ul>
         <li><a href="gsap01.html">1</a></li>
         <li><a href="gsap02.html">2</a></li>
         <li><a href="gsap03.html">3</a></li>
         <li><a href="gsap04.html">4</a></li>
         <li><a href="gsap05.html">5</a></li>
-        <li><a href="gsap06.html">6</a></li>
+        <li class="active"><a href="gsap06.html">6</a></li>
         <li><a href="gsap07.html">7</a></li>
         <li><a href="gsap08.html">8</a></li>
-        <li class="active"><a href="gsap09.html">9</a></li>
+        <li><a href="gsap09.html">9</a></li>
         <li><a href="gsap10.html">10</a></li>
         <li><a href="gsap11.html">11</a></li>
         <li><a href="gsap12.html">12</a></li>
@@ -232,21 +205,6 @@
     </header>
     <!-- //parallax__title  -->
 
-    <nav id="parallax__nav">
-      <ul>
-        <li><a href="#section1" class="active">s1</a></li>
-        <li><a href="#section2">s2</a></li>
-        <li><a href="#section3">s3</a></li>
-        <li><a href="#section4">s4</a></li>
-        <li><a href="#section5">s5</a></li>
-        <li><a href="#section6">s6</a></li>
-        <li><a href="#section7">s7</a></li>
-        <li><a href="#section8">s8</a></li>
-        <li><a href="#section9">s9</a></li>
-      </ul>
-    </nav>
-    <!-- //parallax__nav -->
-
     <main id="parallax__cont">
       <section id="section1" class="parallax__item">
         <span class="parallax__item__num">01</span>
@@ -254,7 +212,7 @@
         <figure class="parallax__item__imgWrap">
           <div class="parallax__item__img"></div>
         </figure>
-        <p class="parallax__item__desc">
+        <p class="parallax__item__desc split">
           높은 목표를 세우고, 스스로 채찍질 한다.
         </p>
       </section>
@@ -266,7 +224,7 @@
         <figure class="parallax__item__imgWrap">
           <div class="parallax__item__img"></div>
         </figure>
-        <p class="parallax__item__desc">
+        <p class="parallax__item__desc split">
           결과도 중요하지만, 과정을 더 중요하게 생각한다.
         </p>
       </section>
@@ -278,7 +236,7 @@
         <figure class="parallax__item__imgWrap">
           <div class="parallax__item__img"></div>
         </figure>
-        <p class="parallax__item__desc">
+        <p class="parallax__item__desc split">
           매 순간에 최선을 다하고, 끊임없이 변화한다.
         </p>
       </section>
@@ -290,7 +248,7 @@
         <figure class="parallax__item__imgWrap">
           <div class="parallax__item__img"></div>
         </figure>
-        <p class="parallax__item__desc">
+        <p class="parallax__item__desc split">
           모든 일에는 기본을 중요하게 생각한다.
         </p>
       </section>
@@ -302,7 +260,7 @@
         <figure class="parallax__item__imgWrap">
           <div class="parallax__item__img"></div>
         </figure>
-        <p class="parallax__item__desc">
+        <p class="parallax__item__desc split">
           열정을 잃지 않고 실패에서 실패로 걸어가는 것이 성공이다.
         </p>
       </section>
@@ -314,7 +272,7 @@
         <figure class="parallax__item__imgWrap">
           <div class="parallax__item__img"></div>
         </figure>
-        <p class="parallax__item__desc">
+        <p class="parallax__item__desc split">
           천 마디 말보단 하나의 행동이 더 값지다.
         </p>
       </section>
@@ -326,7 +284,7 @@
         <figure class="parallax__item__imgWrap">
           <div class="parallax__item__img"></div>
         </figure>
-        <p class="parallax__item__desc">
+        <p class="parallax__item__desc split">
           조그만 성공에 만족하지 않으며, 방심을 경계한다.
         </p>
       </section>
@@ -338,7 +296,7 @@
         <figure class="parallax__item__imgWrap">
           <div class="parallax__item__img"></div>
         </figure>
-        <p class="parallax__item__desc">
+        <p class="parallax__item__desc split">
           나는 내가 더 노력할수록 운이 더 좋아진다는 걸 발견했다.
         </p>
       </section>
@@ -350,72 +308,104 @@
         <figure class="parallax__item__imgWrap">
           <div class="parallax__item__img"></div>
         </figure>
-        <p class="parallax__item__desc">
+        <p class="parallax__item__desc split">
           꿈이 있다면, 그 꿈을 잡고 절대 놓아주지마라.
         </p>
       </section>
       <!-- //section9 -->
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollToPlugin.min.js"></script>
+    <!--split-type 플러그인-->
+    <script src="https://unpkg.com/split-type"></script>
     <script>
-      const links = gsap.utils.toArray("#parallax__nav ul li a");
-      let linkST; //스크롤 트리거를 담을 변수(전역변수로 만듦)
-      links.forEach(link =>{
-        let element = document.querySelector(link.getAttribute("href"))
+      //1. 텍스트 분리하기
+      // let text = document.querySelector(".split");
+      // let splitText = text.innerText;//.split의 텍스트를 변수에 할당
+      // //텍스트를 한글자씩 분리하고 .join메서드로 "</span><span>"을 붙여서 연결
+      // let splitWrap = splitText.split('').join("</span><span>")
+      // //전체에 시작태그와 끝나는 태그로 감싸줍니다(한글자씩 span으로 분리 됩니다)
+      // text.innerHTML = splitWrap = "<span>" + splitWrap + "</span>";
 
-        linkST = ScrollTrigger.create({
-          trigger:element,
-          start:"top top",
-          
-        })
+      //2. 모든 텍스트 분리하기
+      //여러개의 요소를 선택해야하니 querySelectorAll을 사용하여 forEach문으로 순환하며 적용
+      // document.querySelectorAll(".split").forEach(text => {
+      //   //웹 표준을 준수하기 위해 aria-hidden = "true"를 설정, 분리된 글씨는 접근성을 위해 숨겨 놓습니다.
+      //   let splitWrap = text.innerText.split('').join("</span><span aria-hidden='true'>")
 
+      //     //분리된 텍스트를 innerHTML을 통해 다시 넣어줍니다.
+      //     text.innerHTML = "<span aria-hidden='true'>" + splitWrap + "</span>"
 
-        //또다른 트리거 설정, 
-        ScrollTrigger.create({
-          trigger:element,
-          start:"top center",
-          end:"bottom center",
-          onToggle:self=>setActvie(link)//스크롤 트리거가 호출되거나 비활성화시 호출
-          
-        })
+      //     //부모 박스에 aria-label을 붙여 줍니다.
+      //     text.setAttribute("aria-label", text.innerText)
+      // })
 
+      //3. 모든 텍스트에 여백 표현하기
+      // document.querySelectorAll(".split").forEach(text => {
+      //   //현재 요소의 텍스트를 theText에 저장
+      //   let theText = text.innerText;
+      //   //console.log(theText)
+      //   //새로운 텍스트를 저장할 빈문자열 생성
+      //   let newText = "";
+      //   //요소의 텍스트의 길이만큼 반복
+      //   for(let i=0; i<text.innerText.length; i++){
+      //     //각 문자를 span태그로 감싸기 위해 newText에 span태그를 추가합니다.
+      //     //aria-hidden-'true'설정
+      //     newText += "<span aria-hidden= 'true'>";
+      //     //현재 문자가 공백인 경우
+      //     if(text.innerText[i] == " "){
+      //       //공백 문자를 추가 합니다.
+      //       newText += " ";
+      //     }else{//현재 문자가 공백이 아닌 경우
+      //       //원래의 문자를 추가합니다.
+      //       newText += text.innerText[i];
+      //     }
+      //     //각 문자 뒤에 </span>태그를 추가하여 span태그로 감싸줍니다.
+      //     newText += "</span>";
+      //   }
+      //   //console.log(newText)
+      //   //요소의 innerHTML을 newText로 설정하여 텍스트를 새로운 HTML형식으로 업데이트 합니다.
+      //   text.innerHTML = newText;
+      //   //aria-label속성을 추가하여 원래 텍스트를 값으로 설정
+      //   text.setAttribute("aria-label", theText)
+      // })
 
-        link.addEventListener("click", e =>{
-          e.preventDefault();
+      const targets = gsap.utils.toArray(".split")
+      
+      targets.forEach(text => {
+        //SplitType인스턴스를 생성하여 target요소의 텍스트를 줄, 단어, 문자 단위로 분할 합니다.
+        let SplitClient = new SplitType(text, {type: "lines, words, chars"})
 
-          gsap.to(window, {
-            duration:1,
-            scrollTo:linkST.start,
-            overwrite:"auto",
+        //텍스트가 줄 단위로 분할된 결과를 lines변수에 저장(줄 단위로 애니메이션을 적용)
+        let lines = SplitClient.lines;
+        //단어 단위로 분리
+        let words = SplitClient.words;
 
-          })
+        //문자 단위로 분리
+        let chars = SplitClient.chars;
+
+        //words(단어)요소에 애니메이션을 적용
+        gsap.from(chars, {
+          yPercent: 100,
+          autoAlpha: 0,
+          duration: 1,
+          ease: "circ.out",//끝날때 속도가 줄어드는 easing효과
+          //stagger: 0.1,//애니메이션 시작 시각을 요소마다 0.1초씩 차이를 두어 지연 시킵니다(순차적으로 발생)
+          stagger: {
+            amount: 1,//지연의 총량을 설정(1초동안 요소들이 분산되도록 지연)
+            from: "random"//span요소의 애니메이션 시작 시점을 무작위로 설정
+          },
+          scrollTrigger: {
+            trigger: text,
+            start: "top bottom",//뷰포트 하단에서 시작
+            end: "+=400", //시작위치에서 400픽셀 아래로 설정
+            markers:true,
+            //scrub:1,//스크롤과 애니메이션 동기화
+          }
         })
       })
-      //현재 활성화된 링크를 설정하는 함수
-
-      function setActvie(link){
-        links.forEach(el=>el.classList.remove("active"));
-        link.classList.add("active")
-      }
-
-      ScrollTrigger.create({
-        start:"top -80",
-        end:999999,
-        toggleClass:{
-          className:"is-active",
-          targets:"#parallax__nav"
-        }
-      })
-
-      const showNav = gsap.from("#parallax__nav", {
-        yPercent:-200,
-        paused:true,
-        duration:0.2
-      }).progress(1)
     </script>
   </body>
 </html>

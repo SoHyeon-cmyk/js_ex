@@ -265,7 +265,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollToPlugin.min.js"></script>
     <script>
-        
+      //1. 전체 배경 변경하기
+      let bg = gsap.timeline({
+        scrollTrigger: {
+          start: 0,
+          end: "max",
+          scrub:true
+        }
+      })
+
+      //순차적으로 배경색을 변경
+      // bg.to("body", {"--bg-color": "red"})
+      //   .to("body", {"--bg-color": "green"})
+      //   .to("body", {"--bg-color": "blue"})
+
+      //2. data값으로 변경
+      gsap.utils.toArray(".parallax__item").forEach(item => {
+        //color변수에 현재 item의 data-bgcolor를 할당
+        let color = item.getAttribute("data-bgcolor")//item.dataset.bgcolor와 같음
+
+        ScrollTrigger.create({
+          trigger: item,
+          start: "top 50%",
+          end: "bottom 5%",
+          markers:true,
+          //item요소가 스크롤을 통해 start위치를 지나면 호출
+          onEnter: () => gsap.to("body",{
+            backgroundColor: color,//body의 배경색을 color변수로 할당
+            duration: 1.4 //변경되는 시간
+          }),
+          //사용자가 페이지를 위로 스크롤할 때 적용됩니다
+          onEnterBack: () => gsap.to("body",{
+            backgroundColor: color,
+            duration: 1.4
+          })
+        })
+      })
     </script>
 </body>
 </html>
