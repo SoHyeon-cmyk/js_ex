@@ -6,15 +6,15 @@
     <title>직원 정보 입력 폼</title>
     <style>
       table{
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
+        width:100%;
+        border-collapse: collapse;/*셀 사이 여백 제거*/
+        margin-top:20px;
       }
       table, th, td{
-        border: 1px solid black;
+        border:1px solid black;
       }
-      th,td{
-        padding: 8px;
+      th, td{
+        padding:8px;
         text-align: left;
       }
     </style>
@@ -43,7 +43,7 @@
             <option value="marketing">마케팅팀</option>
         </select>
         <br>
-
+        <!--버튼을 클릭하면 addEmployee함수 실행-->
         <button type="button" onclick="addEmployee()">제출</button>
     </form>
 
@@ -58,33 +58,33 @@
         </tr>
       </thead>
       <tbody>
-        <!-- 입력된 직원 정보가 여기 추가 -->
+        <!--입력된 직원 정보가 여기에 추가됩니다-->
       </tbody>
     </table>
-
     <script>
+      //addEmployee함수 생성
       function addEmployee(){
-        //1.폼 요소 가져오기
+        //1. 폼 요소를 가져옵니다.
         const form = document.getElementById('employeeForm');
-        //2.폼 필드에서 값을 읽어오기.
-        const name = form.name.value
-        const email = form.email.value
-        const phone = form.phone.value
-        //select요소.option(옵션태그)[selectedIndex(선택한 옵션의 index)].text
+        //2. 폼 필드에서 값을 읽어 옵니다.
+        const name = form.name.value;
+        const email = form.email.value;
+        const phone = form.phone.value;
+        //select요소.options(옵션태그)[select요소.selectedIndex(선택된 옵션의 index)].text(입력된 글자)
         const department = form.department.options[form.department.selectedIndex].text;
-        //3.테이블의 본문요소를 가져오기
-        const table = document.getElementById('employeeTable').getElementsByTagName('tbody')[0];
-        //4.테이블에 새로운 행을 추가(insertRow(순번) = tr요소를 추가)
+        //3. 테이블의 본문(tbody)요소를 가져옵니다.
+        const table = 
+        document.getElementById('employeeTable').getElementsByTagName('tbody')[0];
+        //4. 테이블에 새로운 행을 추가합니다.(insertRow() = tr요소를 추가)
         const newRow = table.insertRow();
-        //5.새로운 행에 셀을 추가하고, 각 셀에 값을 설정 
+        //5. 새로운 행에 셀을 추가하고, 각 셀에 값을 설정합니다.(insertCell(index) = td요소를 추가)
         newRow.insertCell(0).textContent = name;
         newRow.insertCell(1).textContent = email;
         newRow.insertCell(2).textContent = phone;
         newRow.insertCell(3).textContent = department;
-        //6.폼 초기화
+
+        //6. 폼을 초기화합니다(모든 입력 필드를 비웁니다.)
         form.reset();
-
-
       }
     </script>
 </body>

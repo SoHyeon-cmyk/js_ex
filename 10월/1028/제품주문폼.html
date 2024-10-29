@@ -51,23 +51,36 @@
 
   <h2>주문 정보</h2>
   <table id="orderTable">
+    <thead>
+      <tr>
+        <th>제품 이름</th>
+        <th>수량</th>
+        <th>배송 옵션</th>
+      </tr>
+    </thead>
+    <tbody>
 
+    </tbody>
   </table>
   <script>
     function addOrder() {
       //1. 폼 요소를 가져옵니다.
-      const form = document.querySelector("orderForm")
+      const form = document.querySelector("#orderForm");
       //2. 폼 필드에서 값을 읽어 옵니다.
-        const productName = form.email.value
-        const quantity = form.phone.value
-        const shipping = form.phone.value
+      const productName = form.productName.value;
+      const quantity = form.quantity.value;
+      const shipping = form.shipping.options[form.shipping.selectedIndex].text;
       //3. 테이블의 본문(tbody)요소를 가져옵니다.
-      const table = form.table.options[form.table.selectedIndex].text;
+      const table = document.querySelector("#orderTable tbody");
       //4. 테이블에 새로운 행을 추가합니다.(insertRow() = tr요소를 추가)
-
+      const newRow = table.insertRow();
       //5. 새로운 행에 셀을 추가하고, 각 셀에 값을 설정합니다.(insertCell(index) = td요소를 추가)
+      newRow.insertCell(0).textContent = productName;
+      newRow.insertCell(1).textContent = quantity;
+      newRow.insertCell(2).textContent = shipping;
 
       //6. 폼을 초기화합니다(모든 입력 필드를 비웁니다.)
+      form.reset();
     }
   </script>
 </body>
