@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas class="canvas" width="300" height="150" style="background-color: #eee;"></canvas>
+
+  <script>
+    //width, height:캔버스 넓높이 저장
+   //  x, y 원의 현재 위치 저장
+   let canvas, ctx, width, height, x, y;
+
+   //dx,dy 원의 움직임 속도 및 방향을 제어
+   let dx = 6;
+   let dy = 5;
+
+  //  문서 로딩시 실행되는 구문
+
+  addEventListener('load', ()=>{
+    canvas= document.querySelector(".canvas")
+    ctx = canvas.getContext('2d')
+
+    //변수의 초기값 설정
+    width = canvas.width;
+    height = canvas.height;
+
+
+      //원의 초기 위치는 캔버스의 오른쪽 하단 모서리
+    x = width;
+    y = height;
+
+      //move 함수 0.02초마다 한번씩 반복호출
+    setInterval(move, 20);
+
+    function move(){
+      ctx.clearRect(0,0,width,height)
+      circle(x ,y ,10)//circle 함수 호출, 원의 현재 위치와 반지름을 10으로 보냄
+      
+      //원이 캔버스 좌우 가장자리에 닿았을 때 방향을 반대로 바꿈
+      if(x + dx > width || x + dx < 0){
+        dx = -dx;
+      }if(y + dy > height || y + dy < 0){
+        dy = -dy
+      }
+      x += dx;
+      y += dy;
+    }
+
+    function circle(x,y,r){
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, 2*Math.PI)//x,y는 원의 중심, r은 반지름, 0에서 2*Math.PI까지의 각도로 원을 그림
+      ctx.fillStyle = "#336699"
+      ctx.fill();
+      ctx.closePath();
+    }
+  })
+  </script>
+</body>
+</html>

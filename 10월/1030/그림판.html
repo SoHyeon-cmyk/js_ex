@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+      .color-btn{
+        width: 30px;
+        height: 30px;
+        border: 0;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .color-btn[data-color="lightcoral"]{
+        background-color: lightcoral;
+      }
+      .color-btn[data-color="lightblue"]{
+        background-color: lightblue;
+      }
+      .color-btn[data-color="pink"]{
+        background-color: pink;
+      }
+      .color-btn[data-color="aliceblue"]{
+        background-color: aliceblue;
+      }
+      .img-btn{
+        width: 30px;
+        height: 30px;
+        border: 0;
+        background: url(../img/canvas예제/star.png) center/cover;
+        cursor: pointer;
+      }
+  </style>
+</head>
+<body>
+  <canvas class="canvas" width="600" height="400" style="background-color: #eee;" ></canvas>
+  <div class="control">
+    <button class="color-btn" data-type="color" data-color="lightcoral"></button>
+    <button class="color-btn" data-type="color" data-color="lightblue"></button>
+    <button class="color-btn" data-type="color" data-color="pink"></button>
+    <button class="color-btn" data-type="color" data-color="aliceblue"></button>
+    <button class="img-btn"   data-type="image"></button>
+    <button class="color-btn"   data-type="clear"></button>
+  </div>
+  <button class="save-btn">이미지저장</button>
+  <div class="result_image"></div>
+
+  <script>
+        const canvas = document.querySelector(".canvas")
+        const ctx = canvas.getContext("2d")
+        const control = document.querySelector(".control")
+        const saveBtn = document.querySelector(".save-btn")
+        const resultImage = document.querySelector(".result_image")
+
+        let drawingMode;
+        let colorVal = "black"
+        let brush = 'color';
+
+        const imgEl = new Image()
+        imgEl.src = "../img/canvas예제/star.png";
+
+        function downHandler(){
+          drawingMode = true;
+        }
+        function upHandler(){
+          drawingMode = false;
+        }
+        function moveHandler(e){
+          if(!drawingMode) return;
+          switch(brush){
+            case 'color':
+            ctx.beginPath();
+            ctx.arc(e.offsetX,e.offsetY,10,0,Math.PI*2,false);
+            ctx.fill()
+            break;
+            case 'image':
+              ctx.drawImage(imgEl,e.offsetX-25,e.offsetY-25,50,50);
+              break;
+              case 'clear':
+                ctx.clearRect(e.offsetX-25,e.offsetY-25,50,50)
+          }
+        }
+
+        function setColor(e){
+          //브러시 변수의 값을 클릭한 버튼의 데이터타입값으로 변경
+          brush = e.target.getAttribute("data-type")
+          colorVal = e.target.getAttribute("data-color")
+          ctx.fillStyle = colorVal
+        }
+
+        function createImage(){
+          const url = canvas.toDataURL('image/png');
+          const imgEl = new Image();
+          imgEl.src = url;
+          resultImage.appendChild(imgEl);
+          ctx.clearRect(0,0,canvas.width,canvas.height);
+        }
+
+        canvas.addEventListener('mousedown', downHandler);
+        canvas.addEventListener('mouseup', upHandler);
+        canvas.addEventListener('mousemove', moveHandler);
+        control.addEventListener('click',setColor) //컨트롤 요소를 클릭하면 셋컬러 함수 호출및 색상변경
+        saveBtn.addEventListener("click", createImage)//세이브버튼 클릭시 이미지생성 함수를 불러와 이미지저장
+  </script>
+</body>
+</html>

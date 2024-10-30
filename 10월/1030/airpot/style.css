@@ -1,0 +1,75 @@
+nav{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.nav-content{
+  width: 980px;
+  padding: 0 10px;
+}
+.nav-content ul{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.apple-navbar a{
+  color: #d5d5d5;
+  font-size: 12px;
+  line-height: 44px;
+}
+.apple-navbar ion-icon{
+  font-size: 18px;
+  transform: translateY(3px);
+}
+.apple-navbar a:hover{
+
+}
+.apple-navbar .nav-content{
+  padding-top: 18px;
+  padding-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+.nav-logo a{
+  color: #fefefe;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.nav-item button{
+  color: #fefefe;
+  font-size: 12px;
+  line-height: 22px;
+}
+.nab-item button:hover{
+  color:#2997ff
+}
+
+.nav-item button:disabled .nav-item button:disabled:hover{
+  color: #bebebe;
+  cursor: default;
+}
+
+.nav-items .buy-btn{
+  padding: 0 12px;
+  color: #147ce5;
+  border-radius: 12px;
+}
+.nav-item .buy-btn:hover{
+  color:white;
+}
+
+.sticky{
+  position: fixed;
+  top: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  z-index: 10;
+  backdrop-filter: saturate(180%) blur(15px);
+}
+
+.sticky section{
+  padding-top: 44px;
+}

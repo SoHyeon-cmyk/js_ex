@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canvas</title>
+</head>
+<body>
+  <canvas class="canvas1" width="600" height="400" style="background-color: #eee;"></canvas>
+  <canvas class="canvas2" width="600" height="400" style="background-color: #eee;"></canvas>
+
+
+  <script>
+    const canvas1 = document.querySelector(".canvas1")
+    const context1 = canvas1.getContext('2d');
+
+    //fillRect(x축좌표, y축좌표, x축크기, y축크키)
+    context1.fillRect(50,50,100,100)
+    
+    //색채우기
+    context1.fillStyle = 'red';
+    context1.fillRect(0,0,100,100);
+
+    //지우기
+    context1.clearRect(80,80,50,50)
+
+    ///선그리기
+    context1.strokeRect(150,150,100,100)
+
+    const canvas2 = document.querySelector(".canvas2")
+    const context2 = canvas2.getContext('2d');
+
+    context2.beginPath();//path시작
+    context2.moveTo(100,100)//moveTo(x,y) 위치를 시작점으로 설정
+    context2.lineTo(300,200)//lineTo(x,y) 패스를 그림
+    context2.stroke();//선
+    context2.closePath();//path종료
+
+    //원 arc(x,y,radius,startangle,endangle,radian,anticlockwise)
+    function radian(angle){//각도를 라디안 값으로 변경
+      return angle * Math.PI / 180
+    }
+    context2.beginPath();
+      context2.arc(500,100,20,0,radian(360),false);
+      context2.strokeStyle = "red";
+      context2.stroke();
+      context2.closePath();
+
+
+    context2.beginPath();
+    context2.arc(300,300,50,0,radian(360),false);
+    context2.fill()
+    context2.closePath();
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+</head>
+<body>
+  <canvas class="canvas" width="600" height="400" style="background-color: #eee;" ></canvas>
+
+  <script>
+    const canvas = document.querySelector(".canvas")
+    const ctx = canvas.getContext("2d")
+
+    const imgEl = new Image();
+
+    imgEl.src = '../img/canvas예제/ebc.png';
+    // img요소가 로드되면 ctx.drawimage로 캔버스에 이미지 배치
+    imgEl.addEventListener("load", ()=>{
+      // (이미지요소, x위치, y위치, w크기, h크기)
+      ctx.drawImage(imgEl, 50, 50, 200, 300)
+      // (이미지소스,하위사각형왼쪽 모서리x축,사각형왼쪽위y축,넓이, 높이, 배치할 x축,y축,이미지 대상 크기, 높이)
+      ctx.drawImage(imgEl,70,100,150,200,0,0,75,100)
+    })
+
+  </script>
+
+</body>
+</html>
