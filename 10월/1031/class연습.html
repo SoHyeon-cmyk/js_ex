@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  //  class book  {title: "오만과편견",Author:"제인 오스턴"}
+  class Book{
+    constructor(s, i){
+      this.title = s;
+      this.author = i;
+    }
+    getDetails(){
+       return `제목${this.title}, 저자${this.author}`
+    }
+  }
+   let book = new Book("오만과 편견", "제인 오스턴")
+   console.log(book)
+  
+
+
+  class Person{
+    constructor(name,age){
+      this.name = name;
+      this.age = age;
+    }
+    getIntroduction(){
+      return `저의 이름은 ${this.name}입니다, 나이는 ${this.age}`
+    }
+  }
+  class Employee extends Person{
+    constructor(name,age,job){
+      super(name,age);
+      this.job = job;
+    }
+    getDetails(){
+      return`직업은 ${this.name}이고 ${this.getIntroduction()}`;
+    }
+  }
+
+  const employee = new Employee("홍길동", 30, "웹 개발자");
+   console.log(employee.getIntroduction());
+  </script>
+</body>
+</html>

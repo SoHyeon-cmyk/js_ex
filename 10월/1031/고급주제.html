@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+let person = {
+  name: "홍길동",
+  age:16
+}
+
+// person.age = 20
+person["age"] = 20
+
+//숫자 속성명이 가능/ 대괄호로 객체의 프로퍼티로 접글할때는 문자열로 작성
+person[0]="호형호제"
+person[1]="집가고싶다"
+
+console.log(person) //프로퍼티 키가 숫자일 경우 ""로 감싸지 않아도 됨.
+
+
+
+const MAX = 1000, MIN = 1;
+let count = [] //랜덤으로 생성된 숫자가 중복되면 카운트 해주는 변수
+
+//100번 호출하는 코드
+for(let i = 0; i < 100; i++){
+
+  //MIN 과 MAX사이의 정수를 구하는 공식
+  let a = Math.floor(Math.random() * (MAX - MIN +1) + MIN)
+
+  //카운트배열의 순번이 생성한 랜덤숫자일 경우 그 값이 undefined일때
+  if(typeof count [a] == "undefined") count [a] = 1
+  else count [a] += 1; //같은 숫자가 있을 겨우 1증가
+}
+
+//카운트 배열의 갯수만큼 반복되는 코드
+// for (let i = 0; i < count.length; i++ ){
+  for(let key in count){
+  if(count[key] >= 2) //두번이상 호출됐을 경우 
+console.log(key, count[key]); //호출된 숫자, 호출된 횟수를 출력
+
+  console.log("length = " , Object.keys(count).length)
+}
+  </script>
+</body>
+</html>
