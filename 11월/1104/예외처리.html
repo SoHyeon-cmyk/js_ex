@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>예외 발생</h1>
+   <button id="throwExBtn">예외 발생!</button>
+   <p id="text"></p>
+
+   <script>
+
+    //아이디가 throwExBtn인 요소를 선택
+    var btn = document.getElementById("throwExBtn")
+    btn.addEventListener("click", throwEx) //클릭이벤트 발생시 함수 throwEx를 발동
+
+
+    //throwEx함수 선언
+    function throwEx(){
+      try{ //기본적으로 맨 먼저 실행되는 코드.
+        //error객체를 사용해 명시적으로 오류를 발생시킴
+        throw new Error("직접 발생시킨 오류입니다.")
+      }
+      catch(ex){//try블록에서 발생한 예외 코드나 Error객체를 전달받아 처리
+        //name프로퍼티는 오류의 타입을 저장함.
+        document.getElementById("text").innerHTML = ex.name + "<br>";
+        //massage프로퍼티는 오류 메세지를 저장함.
+        document.getElementById("text").innerHTML += ex.message;
+      }
+    }
+   </script>
+</body>
+</html>

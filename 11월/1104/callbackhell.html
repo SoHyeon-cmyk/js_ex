@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+  <script>
+// function increaseAndPrint(n, callback){
+//   //n매개변수에 숫자를 전달함
+//   setTimeout(() => {
+//     //1초뒤에 한번씩 숫자 n에 1을 더해서 increased 변수에 할당
+//     const increased = n + 1;
+//     console.log(increased);
+//     if(callback){
+//       callback(increased);
+//     }
+//   }, 1000)
+// }
+
+// increaseAndPrint(0, n => {
+//   increaseAndPrint(n, n => {
+//     increaseAndPrint(n, n => {
+//       increaseAndPrint(n, n => {
+//         increaseAndPrint(n, n => {
+//           console.log('끝!');
+//         });
+//       });
+//     });
+//   });
+// });
+
+//개선된 비동기 처리 문법
+
+function increaseAndPrint(n){
+  return new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+      const increased = n + 1;
+      console.log(increased);
+      resolve(increased);
+    },1000)
+  })
+}
+
+increaseAndPrint(0)
+  .then((n) => increaseAndPrint(n))
+  .then((n) => increaseAndPrint(n))
+  .then((n) => increaseAndPrint(n))
+  .then((n) => increaseAndPrint(n));
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+{
+  "items": [
+    {
+      "type": "tshirt",
+      "gender": "female",
+      "size": "large",
+      "color": "pink",
+      "name": "핑크셔츠1",
+      "image": "https://github.com/jmk255/source/blob/main/pink_t.png?raw=true"
+    },
+    {
+      "type": "pants",
+      "gender": "male",
+      "size": "small",
+      "color": "blue",
+      "name": "블루팬츠1",
+      "image": "https://github.com/jmk255/source/blob/main/blue_p.png?raw=true"
+    },
+    {
+      "type": "pants",
+      "gender": "male",
+      "size": "large",
+      "color": "yellow",
+      "name": "옐로우팬츠1",
+      "image": "https://github.com/jmk255/source/blob/main/yellow_p.png?raw=true"
+    },
+    {
+      "type": "skirt",
+      "gender": "male",
+      "size": "large",
+      "color": "yellow",
+      "name": "옐로우스커트1",
+      "image": "https://github.com/jmk255/source/blob/main/yellow_s.png?raw=true"
+    },
+    {
+      "type": "skirt",
+      "gender": "female",
+      "size": "small",
+      "color": "blue",
+      "name": "블루스커트1",
+      "image": "https://github.com/jmk255/source/blob/main/blue_s.png?raw=true"
+    },
+    {
+      "type": "tshirt",
+      "gender": "male",
+      "size": "large",
+      "color": "blue",
+      "name": "블루셔츠1",
+      "image": "https://github.com/jmk255/source/blob/main/blue_t.png?raw=true"
+    },
+    {
+      "type": "tshirt",
+      "gender": "male",
+      "size": "large",
+      "color": "yellow",
+      "name": "옐로우셔츠1",
+      "image": "https://github.com/jmk255/source/blob/main/yellow_t.png?raw=true"
+    },
+    {
+      "type": "pants",
+      "gender": "female",
+      "size": "small",
+      "color": "pink",
+      "name": "핑크팬츠1",
+      "image": "https://github.com/jmk255/source/blob/main/pink_p.png?raw=true"
+    },
+    {
+      "type": "tshirt",
+      "gender": "female",
+      "size": "large",
+      "color": "pink",
+      "name": "핑크셔츠2",
+      "image": "https://github.com/jmk255/source/blob/main/pink_t.png?raw=true"
+    },
+    {
+      "type": "pants",
+      "gender": "male",
+      "size": "small",
+      "color": "blue",
+      "name": "블루팬츠2",
+      "image": "https://github.com/jmk255/source/blob/main/blue_p.png?raw=true"
+    },
+    {
+      "type": "pants",
+      "gender": "male",
+      "size": "large",
+      "color": "yellow",
+      "name": "옐로우팬츠2",
+      "image": "https://github.com/jmk255/source/blob/main/yellow_p.png?raw=true"
+    },
+    {
+      "type": "skirt",
+      "gender": "male",
+      "size": "large",
+      "color": "yellow",
+      "name": "옐로우스커트2",
+      "image": "https://github.com/jmk255/source/blob/main/yellow_s.png?raw=true"
+    },
+    {
+      "type": "skirt",
+      "gender": "female",
+      "size": "small",
+      "color": "blue",
+      "name": "블루스커트2",
+      "image": "https://github.com/jmk255/source/blob/main/blue_s.png?raw=true"
+    },
+    {
+      "type": "skirt",
+      "gender": "female",
+      "size": "small",
+      "color": "pink",
+      "name": "핑크스커트1",
+      "image": "https://github.com/jmk255/source/blob/main/pink_s.png?raw=true"
+    },
+    {
+      "type": "tshirt",
+      "gender": "male",
+      "size": "large",
+      "color": "blue",
+      "name": "블루셔츠2",
+      "image": "https://github.com/jmk255/source/blob/main/blue_t.png?raw=true"
+    },
+    {
+      "type": "tshirt",
+      "gender": "male",
+      "size": "large",
+      "color": "yellow",
+      "name": "옐로우셔츠2",
+      "image": "https://github.com/jmk255/source/blob/main/yellow_t.png?raw=true"
+    },
+    {
+      "type": "pants",
+      "gender": "female",
+      "size": "small",
+      "color": "pink",
+      "name": "핑크팬츠2",
+      "image": "https://github.com/jmk255/source/blob/main/pink_p.png?raw=true"
+    }
+  ]
+}

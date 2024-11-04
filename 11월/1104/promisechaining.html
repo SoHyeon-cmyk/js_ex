@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<script>
+  function doSomething(){
+    return new Promise((resolve, reject) => {
+      resolve(100)
+    });
+  }
+
+  doSomething()
+    .then((value1) =>{
+      const data1 = value1 + 50;
+      return data1
+    })
+    .then((value2) =>{
+      const data2 = value2 + 50;
+      return data2
+    })
+    .then((value3) =>{
+      const data3 = value3 + 50;
+      return data3
+    })
+    .then((value4) =>{
+      console.log(value4);
+    })
+</script>
+  
+</body>
+</html>
