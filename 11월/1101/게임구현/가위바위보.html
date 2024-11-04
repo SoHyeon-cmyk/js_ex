@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가위바위보 게임</title>
+  <style>
+    #arena{
+      width:480px;
+      height:360px;
+      margin:auto;
+      background:url(images/rays.png) no-repeat;
+      position:relative;
+    }
+    #control{
+      position:absolute;
+      width:100%;
+      height:30px;
+      top:0; left:0;
+      line-height: 30px;
+      text-align: center;
+      background-color:#cbc39d;
+      cursor:pointer;
+    }
+    #home, #guest{
+      list-style:none;
+      padding:0; margin:0;
+      position:relative;
+      float:left;
+    }
+    #guest{
+      float:right;
+    }
+
+    #home > li, #guest > li{
+      width:150px;
+      height:150px;
+      margin:0; padding:0;
+      position:absolute;
+      top:105px;
+      visibility: hidden;
+    }
+    #guest > li{
+      right:0;
+    }
+
+    .rock{background:url(images/rock.png) no-repeat}
+    .paper{background:url(images/paper.png) no-repeat}
+    .scissors{background:url(images/scissors.png) no-repeat}
+  </style>
+</head>
+<body>
+  <div id="arena">
+    <div id="control">시작</div>
+    <ul id="home">
+      <li class="rock"></li>
+      <li class="paper"></li>
+      <li class="scissors"></li>
+    </ul>
+    <ul id="guest">
+      <li class="rock"></li>
+      <li class="paper"></li>
+      <li class="scissors"></li>
+    </ul>
+  </div>
+  <script>
+    //li요소를 전역변수로 선언해야 코드 전역에서 사용할 수 있다.
+    const images = document.querySelectorAll("li");
+    
+    //setInterval을 제어할 변수
+    let myInterval = null;
+
+    window.addEventListener("load",()=>{
+      //html문서 및 관련 이미지 등이 모두 준비될 때 함수 init()을 호출합니다
+      init();
+    })
+
+    function init(){
+      //가위바위보의 배경이미지가 있는 모든 리스트(li)에서 클래스 이름이 rock인 경우에만 화면에 보이도록 합니다.
+      images.forEach(list => {
+        console.log(list.className)
+        if(list.className == "rock"){
+          list.style.visibility = "visible";
+        }else{
+          list.style.visibility = "hidden";
+        }
+      })
+    }
+
+    //#control에 클릭이벤트 추가
+    document.querySelector("#control").addEventListener("click", function(){
+      //console.log(this.childNodes[0].nodeValue)
+      console.log(this.firstChild.nodeValue) // 시작
+      //control이 "시작"일 때 control의 글자를 "종료/결과"로 바꾸고, 배경색 변경, 글자 색 변경, playGame()함수 호출
+      if(this.firstChild.nodeValue == "시작"){ //게임시작
+        this.firstChild.nodeValue = '종료/결과'; //value값 변경
+        this.style.backgroundColor = "#9da5cb";//배경색 변경
+        this.style.color = "white";//글자색 변경
+        playGame();//playGame함수 호출
+      }else{ //결과 보기 및 게임 종료
+        this.style.backgroundColor = "#cbc39d";
+        this.style.color = "black";
+        this.firstChild.nodeValue = "시작";
+        stopGame();//stopGame함수 호출
+      }
+    })
+
+    //playGame함수 생성, setInterval을 이용하여 1/4초마다 반복적으로 가위바위보 이미지를 변경
+    function playGame(){
+      myInterval = setInterval(function(){
+        //Math.random()*3으로 0부터 3미만의 실수를 만들고 Math.floor()로 소수점 이하의 값을 버려줍니다(나오는 랜덤 숫자 = 0,1,2)
+        let showItem = Math.floor(Math.random()*3);
+
+        //forEach로 이미지를 순회하여 랜덤 숫자와 같은 순번의 이미지를 화면에 나타나게 하고 그외의 이미지는 화면에 나타나지 안게 합니다.
+        images.forEach((list, idx) => {
+          if((idx % 3) == showItem){
+            list.style.visibility = 'visible';
+          }else{
+            list.style.visibility = 'hidden';
+          }
+        })
+      },250)
+    }
+
+    //stopGame함수 생성, clearInterval을 이용하여 가위바위보 이미지를 반복적으로 변경하는효과 제거
+    function stopGame(){
+      clearInterval(myInterval);
+
+      let homeResult, guestResult;
+      //홈 팀 및 상대 팀의 가위바위보를 무작위로 선택합니다.
+      //homeItem은 0~2사이의 하나의 값이 선택되고, guestItem은 3~5사이의 하나의 값이 선택되게 만들어 줍니다.
+      let homeItem = Math.floor(Math.random()*3);
+      let guestItem = Math.floor(Math.random()*3) + 3;
+
+      //forEach로 모든 아이템 요소를 순환하면서 순번이 homeItem인 요소를 화면에 표시하고 클래스 이름을 homeResult변수에 담아 주고, 순번이 guestItem인 요소를 화면에 표시하고 클래스 이름을 guestResult변수에 담아 줍니다. 그외 요소는 화면에서 가려 줍니다.
+      images.forEach((list, idx) => {
+        if(idx == homeItem){
+          list.style.visibility = "visible";
+          homeResult = list.className;
+        }else if(idx == guestItem){
+          list.style.visibility = "visible";
+          guestResult = list.className;
+        }else{
+          list.style.visibility = "hidden";
+        }
+      })
+      //마지막으로 결과를 출력하기 위해 0.3초 뒤에 resultGame을 실행하고 인자로 homeResult와 guestResult를 전달 합니다.
+      setTimeout(function(){
+        resultGame(homeResult, guestResult)
+      },300)
+    }
+
+    //resultGame함수 생성, 매개변수로 home과 guest를 전달 받습니다.
+    function resultGame(home, guest){
+      if(home == guest){//무승부
+        alert("무승부 -_-;")
+      }else{
+        //home이 이기면 경고창으로 이겼다를 표시, home이 지면 경고창으로 졌어요를 표시
+        switch(home){
+          case 'rock':
+            if(guest == 'paper'){
+              alert("졌어요 ㅠㅠ");
+            }else{//scissors
+              alert("이겼다 ^^")
+            }
+            break;
+          case 'paper':
+            if(guest == 'scissors'){
+              alert("졌어요 ㅠㅠ");
+            }else{//rock
+              alert("이겼다 ^^")
+            }
+            break;
+          case 'scissors':
+            if(guest == 'rock'){
+              alert("졌어요 ㅠㅠ");
+            }else{//paper
+              alert("이겼다 ^^")
+            }
+            break;
+        }
+      }
+    }
+  </script>
+</body>
+</html>

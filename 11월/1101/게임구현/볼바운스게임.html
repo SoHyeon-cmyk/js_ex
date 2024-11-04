@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>볼바운스 게임</title>
+  <style>
+    #space{
+      margin:auto;
+      display:block;
+      background-image:url(images/space.jpg);
+    }
+  </style>
+</head>
+<body>
+  <label>장애물의 개수: </label>
+  <select id="barrierNum">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select>
+  <canvas id="space" width="400" height="400"></canvas>
+  <script>
+    //전역변수 초기화
+    let canvas = null;//캔버스요소를 담을 변수
+    let ctx = null; //getContext()메서드를 담을 변수
+    let intervalId = null; //setInterval메서드를 담을 변수
+    let direction = null; //키보드 방향값을 담을 변수
+    let score = 0; //점수를 담을 변수
+    let canvasW, canvasH; //캔버스의 크기를 담을 변수
+
+    //캔버스 초기화
+    addEventListener("load",function(){
+      canvas = document.getElementById("space");
+      ctx = canvas.getContext("2d");
+      canvasW = canvas.width;
+      canvasH = canvas.height;
+      help();//help함수 호출
+      //키보드를 누르면 keyControl함수를 호출
+      document.addEventListener("keydown",keyControl)
+    })
+
+    function help(){//캔버스에 글자 표시
+      ctx.font = '20px Courier';
+      ctx.fillStyle = 'white';
+      ctx.textAlign = 'center';
+      ctx.fillText('볼 바운스 게임 도움말',200,130);
+      ctx.fillText("게임 시작 : space bar",200,180);
+      ctx.fillText('바 조절: 왼쪽(<-), 오른쪽(->)',200,230);
+    }
+
+    function keyControl(){
+      //console.log(event.keycode)
+      let selection = {//누른 키보드 버튼의 keycode를 속성이름으로 값을 할당해 줍니다.
+        32 : "startGame",
+        37 : "left",
+        39 : "right"
+      }
+      //누른 버튼이 startGame이면 playGame()함수 호출
+      if(selection[event.keyCode] == 'startGame'){
+        playGame();
+      }else{//누른 버튼이 startGame이 아니면 direction에 입력한 키값을 할당
+        direction = selection[event.keyCode];
+        //입력한 키에 대한 값을 출력
+        console.log("key: "+event.keyCode+ ", value :"+selection[event.keyCode]);
+      }
+    }
+    //공 객체 생성
+    const ball = {
+      x: 200, //x축 위치
+      y: 200, //y축 위치
+      xspeed: -2, //x축 이동 값
+      yspeed: 3, //y축 이동 값
+      radius: 10, //공의 반지름 값
+      draw: function(){//공을 그려주는 메서드
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+      },
+      move: function(){//공의 위치를 이동시키는 메서드
+        this.x += this.xspeed;
+        this.y += this.yspeed;
+      },
+      checkWall: function(){//캔버스 벽에 닿았을 때 공을 반대 방향으로 이동시키는 메서드
+        if(this.x < 0 || this.x > canvasW){
+          this.xspeed = -this.xspeed;
+        }
+        if(this.y < 0 || this.y > canvasH){
+          this.yspeed = -this.yspeed;
+        }
+      }
+    }
+
+    //바 객체 생성
+    const bar = {
+      x: 100,
+      y: 300,
+      barWidth: 50,
+      barHeight: 3,
+      moveSpace: 20, //바의 이동값
+      barColor: 'white',
+      //블록 객체에 사각형을 만드는 메소드
+      draw: function(){
+        ctx.fillStyle = this.barColor;
+        ctx.fillRect(this.x, this.y, this.barWidth, this.barHeight);
+      },
+      move: function(){//바를 움직이게하는 메서드
+        if(direction == 'right'){//이동 방향이 right면 실행
+          this.x += this.moveSpace;//바의 x축 위치를 현재 위치에서 바의 이동값을 더한 값 만큼 이동
+          if(this.x > canvasW - this.barWidth){//bar를 캔버스오른쪽 밖으로 나가지 않도록 이동 못하게 하는 구문
+            this.x = canvasW - this.barWidth;
+          }
+        }else if(direction == 'left'){//이동 방향이 left면 실행
+          this.x -= this.moveSpace;//바의 x축 위치를 현재 위치에서 바의 이동값을 뺀 값 만큼 이동
+          if(this.x < 0){//바의 위치가 캔버스의 왼쪽 끝이면 더이상 이동못하게 하는 구문
+            this.x = 0;
+          }
+        }
+        direction = '';//마지막으로 방향값을 비워줍니다.
+      },
+      //바에 충돌 감지하기
+      bounceCheck: function(ball){
+        if(
+          ball.x >= this.x &&
+          ball.x <= this.x + this.barWidth &&
+          ball.y >= this.y &&
+          ball.y <= this.y + this.barHeight
+        ){//ball과 bar가 충돌했을때
+          //공의 y축 방향을 반대방향으로 이동시킴
+          ball.yspeed = -ball.yspeed
+          score++;//score를 1증가 시킴
+        }
+      }
+    }
+
+    //score 글자 표시
+    function drawScore(){
+      ctx.font = '20px Courier';
+      ctx.fillStyle = 'white';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText("score: " + score, 10, 30);
+    }
+
+    //장애물을 생성하는 함수, 매개변수로 x축 y축 위치값을 전달 받음
+    function barrier(x,y){
+      this.x = x; //장애물의 x위치값
+      this.y = y; //장애물의 y위치값
+      this.barWidth = 50;//장애물의 넓이
+      this.barHeight = 3;//장애물의 높이
+      this.barColor = 'yellow'; //장애물 색상
+      //블록 객체에 사각형을 만드는 메서드 생성
+      this.draw = function(){
+        ctx.fillStyle = this.barColor;
+        ctx.fillRect(this.x, this.y, this.barWidth, this.barHeight);
+      };
+      //벽에 충돌을 감지하기
+      this.bounceCheck = function(ball){
+        if(
+          ball.x >= this.x &&
+          ball.x <= this.x + this.barWidth &&
+          ball.y >= this.y &&
+          ball.y <= this.y + this.barHeight
+        ){//ball과 bar가 충돌했을때
+          //공의 y축 방향을 반대방향으로 이동시킴
+          ball.yspeed = -ball.yspeed
+        }
+      }
+    }
+
+    //장애물의 위치를 랜덤으로 적용하는 함수
+    function barrierGen(barrierArray, barrierNum){//barrierArray = 장애물 객체를 담을 배열, barrierNum = 장애물의 갯수
+      //장애물이 생성될 최대 위치값
+      let locationW = canvasW - bar.barWidth;
+      let locationH = bar.y - 100;
+      let barrierX, barrierY;//장애물의 위치값을 담을 변수
+      //장애물의 갯수 만큼 반복문 실행
+      for(let i=0; i < barrierNum; i++){
+        //장애물의 위치를 랜덤으로 설정
+        barrierX = Math.floor(Math.random() * locationW);
+        barrierY = Math.floor(Math.random() * locationH);
+
+        //배열에 담아주는데 barrier생성자 함수로 랜덤으로 설정한 x축 위치와 y축 위치를 인자로 전달하면서 생성
+        barrierArray[i] = new barrier(barrierX, barrierY);
+      }
+    }
+
+    function playGame(){
+      //barrier를 생성하는 구문
+      const barrierId = document.getElementById('barrierNum');
+      //선택된 option의 인덱스를 변수에 할당
+      let barrierIdx = barrierId.selectedIndex;
+      //console.log(barrierIdx)
+      //선택한 option의 value값을 변수에 할당
+      let barrierNum = barrierId.options[barrierIdx].value;
+      //barrier들을 담을 배열을 생성
+      let barrierArray = new Array();
+
+      //barrierGen함수로 배열과 선택한 option의 value값을 인자로 전달하여 호출
+      barrierGen(barrierArray, barrierNum)
+
+      //0.02초마다 화면을 지우고 객체의 메서드를 실행시켜줍니다.
+      intervalId = setInterval(function(){
+        ctx.clearRect(0,0,canvasW, canvasH);
+        ball.draw();//볼을 캔버스에 그려줌
+        ball.move();//볼의 위치를 이동시켜 줌
+        ball.checkWall();//볼이 캔버스밖으로 나가지 않게 하는 메서드
+        //장애물의 갯수 만큼 반복
+        for(var i=0; i < barrierNum; i++){
+          barrierArray[i].draw(); //장애물을 그려줌
+          barrierArray[i].bounceCheck(ball);//공이 새로 그려질때마다 충돌 감지
+        }
+        bar.draw();//바를 캔버스에 그려줌
+        bar.move();//바의 위치를 이동시켜 줌
+        bar.bounceCheck(ball);//ball객체를 파라미터로 전달
+        drawScore();//스코어 표시
+        gameOver(ball);//게임오버 함수 호출
+      },20)
+    }
+
+    //공이 캔버스 바닦에 닿으면 게임오버
+    function gameOver(ball){
+      if(ball.y > canvasH){//공이 캔버스 바닦에 닿으면 실행
+        clearInterval(intervalId);//setInterval함수를 종료
+        //Game Over 글자표시
+        ctx.font = "50px Courier";
+        ctx.fontStyle = 'white';
+        ctx.textAlign = "center";
+        ctx.fillText("Game Over", canvasW/2, canvasH/2);
+      }
+    }
+
+    
+  </script>
+</body>
+</html>
