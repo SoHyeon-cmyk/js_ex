@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<script>
+  const Person = (function(){
+    let _age = 0;
+
+    function Person(name,age){
+      this.name = name//public
+      _age = age; //hidden
+    }
+
+
+    //프로토타입 메서드
+
+    Person.prototype.sayHi = function (){
+      console.log(`Hi, My name is ${this.name}. I'm ${_age} years old.`)
+    };
+
+    //생성자 함수를 반환
+    return Person;
+
+  }())
+
+  const me = new Person('Kim',21);
+  me.sayHi();
+
+  const you = new Person('park',50);
+  you.sayHi();
+  
+</script>
+
+</body>
+</html>
