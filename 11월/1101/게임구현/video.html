@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .video{
+      width: 0; height: 0;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <video src="/10월/img/canvas예제/video.mp4" class="video" autoplay muted loop></video>
+  <canvas class="canvas" width="600" height="400" style="background: #eee;"></canvas>
+  <div class="btn">
+    <button class="btn" data-color="red">red</button>
+    <button class="btn" data-color="green">green</button>
+    <button class="btn" data-color="blue">blue</button>
+    <button class="btn" data-color="">reset</button>
+  </div>
+
+  <script>
+    window.onload = function(){
+    const canvas = document.querySelector(".canvas")
+    const ctx = canvas.getContext("2d")
+
+    //fontstyle
+
+    ctx.font = "bold 50px serif" ;
+    ctx.fillStyle = 'white'
+    // ctx.fillText("비디오 로딩중...", 300,200)
+
+    const videoEl = document.querySelector(".video");
+    //canplaythrough =블우저가 버퍼링 중지없이 지정매체 통해 재생할 수 있다고 예상할때 발생
+    videoEl.addEventListener('canplaythrough', render)
+
+    const messages = [
+      {time: 1, messages:";;",x:100,y:100},
+      {time: 3, messages:"??",x:300,y:300},
+      {time: 5, messages:"!!",x:400,y:200},
+    ]
+
+    //버튼요소
+    const btnsEl = document.querySelector(".btns")
+    let imageData;
+    let colorValue;
+
+
+
+    function render(){
+      ctx.drawImage(videoEl,0,0,600,400)
+
+      //캔버스의 지정된 부분에 대한 기본 픽셀 데이터를 나타내는 개체를 반환함
+      imageData = ctx.getImageData(0,0,600,400)
+      for(let i=0; i < imageData.data.length; i += 4)
+      switch(colorValue){
+      
+        case 'red':
+        imageData[i+0] = 150
+        break;
+        case 'green':
+        imageData[i+1] = 150
+        break;
+        case 'blue':
+        imageData[i+2] = 150
+        break;
+
+      }
+      
+      ctx.putImageData(imageData,0,0)
+      
+      for(let i =0; i < messages.length; i++){
+        if(videoEl.currentTime > messages[i].time){
+          ctx.fillText(messages[i].messages,messages[i].x,messages[i].y)
+        }  
+      }
+
+      requestAnimationFrame(render)
+    }
+    //버튼 클릭이벤트
+    btnsEl.addEventListener("click", (e)=> {
+      //클릭한 버튼의 데이터컬러값을 데이터벨류 값에 할당
+      colorValue = e.target.getAttribute("data-color")
+    });
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<script>
+
+  // function makeCoffee(roastType){
+  //   return function(sugar){
+  //     return function(cream){
+  //       return console.log(`coffee : ${roastType},sugar:${sugar}, cream : ${cream}`)
+  //     }
+  //   }
+  // }
+
+
+  // makeCoffee('Dark Roast')(1)(2)
+
+  // //부분적용
+
+  // const meduimRoast = makeCoffee("Medium Roast")
+
+  // const order1 = meduimRoast(1)(0)
+  // const order2 = meduimRoast(0)(7)
+
+
+
+
+
+  
+  //HOF패턴
+  
+  // const ingredientAdder = (ingredient) => (input) => console.log(`${input},${ingredient}`);
+  // const bacon = ingredientAdder("Bacon")
+  // const lettuce = ingredientAdder("Lettuce")
+  // const cheese = ingredientAdder("Cheese")
+
+  // const makeSandwich = bread => cheese(lettuce(bacon(bread)));
+  // makeSandwich("White Bread")
+
+//Compose패턴
+
+  // const ingredientAdder = (ingredient) => (input) => console.log(`${input},${ingredient}`);
+  //   const bacon = ingredientAdder("Bacon");
+  //   const lettuce = ingredientAdder("Lettuce");
+  //   const cheese = ingredientAdder("Cheese");
+
+  //   const compose = (...functions) => input => functions.reduceRight((acc,func) => func(acc), input);
+
+  //   const makeSandwich = bread => compose( cheese, lettuce, bacon )(bread);
+
+  //   makeSandwich("White Bread")
+
+  //Pipeline 패턴
+  // const ingredientAdder = (ingredient) => (input) => console.log(`${input},${ingredient}`);
+  //   const bacon = ingredientAdder("Bacon");
+  //   const lettuce = ingredientAdder("Lettuce");
+  //   const cheese = ingredientAdder("Cheese");
+
+  //  const pipe = (...functions) => input => functions.reduce((acc,func) => func(acc), input);
+  //     const makeSandwich = bread => pipe( bacon, lettuce, bacon )(bread);
+
+  //         makeSandwich("White Bread")
+
+const log = console.log
+const title = " Learning Function Composition 1"
+
+const strToArr = str => str.split(" ");
+const toLower = arr => arr.map(w=>w.toLowerCase());
+const joinWithDash = arr => arr.join(".")
+
+const compose = (...functions) => input => functions.reduceRight((acc, fn) => fn(acc), input)
+
+const slug = compose(joinWithDash,toLower,strToArr)(title);
+log(slug);
+
+
+
+//pipe패턴 사용
+// const pipe = (...functions) => input => 
+//     //바깥쪽에서 안쪽이기 때문에 reduce메서드를 사용
+//     functions.reduce((acc, fn) => fn(acc), input)
+// //compose와 반대로 함수를 전달
+// const slug = pipe(strToArr, toLower, joinWithDash)(title);
+// log(slug); //learning-function-composition-1
+ </script>
+  
+</body>
+</html>

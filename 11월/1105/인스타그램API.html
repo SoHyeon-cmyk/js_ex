@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <div class="container"></div>
+
+    <script>
+      //변수에 인스타그램API를 사용하기 위한 액세스 토큰을 문자열로 저장
+      const ACCESS_TOKEN = "IGQWROZA29hVUplMU1RZAlFLZAWxZAWjRmZAnJBVGgxc2hXaU1iSTFrTnRRbDJVbF9QVlJxZAmtpUW1wdi1zN0gyT2l4WjJ1OVJWU3JkcFhXMkp3d0JaU3Q0aS1ib0NCcEgwbHNseFA0bmF0TFM2VVlXQXVSa0VocVJWbk0ZD"
+
+      const USER_MEDIA_URL = `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink&access_token=${ACCESS_TOKEN}`
+
+      fetch(USER_MEDIA_URL)
+      .then(res => res.json())
+      .then(dataAray => {
+        //응답데이터에서 data배열을 추출하고, 이 배열에서 처음 8개의 항목만을 선택하여 images변수에 저장
+        const images = dataAray.data.slice(0,8);
+        console.log(images)
+
+        //images 배열에 각 항목에 대해 반복문을 실행
+        images.forEach((el) =>{
+          //.container 클래스를 가진 HTML요소를 선택하여 그 요소의 innerHTML에 새로운 이미지를 추가
+          document.querySelector(".container").innerHTML += `
+            <a href ="${el.permalink}" target="_blank">
+              <img src="${el.media_url}" width ="200"
+              </a> 
+          `
+        })
+      })
+    </script>
+</body>
+</html>

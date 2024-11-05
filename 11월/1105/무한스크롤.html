@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    html{
+      height: 100%;
+      width: 100%;
+    }
+    #container{
+      max-width: 470px;
+      margin: auto;
+      outline: 1px solid red;
+    }
+
+    #photos{
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    img{
+      width: 150px;
+      display: flex;
+      flex-basis: 100%;
+      flex: 1;
+      margin: 4px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="photos"></div>
+  </div>
+
+<script>
+const getPhotos = page => {
+  const url = `https://jsonplaceholder.typicode.com/photos?_page=${page}&limits=10`
+  //fetch를 통해 url로 요청 보내기/받은 응답을 json형태로 변환후 반환
+  return fetch(url).then(response => response.json())
+}
+const log = console.log;
+// getPhotos(1).then(data => {
+//   log(data)
+// })
+
+// .ampPhoto 함수는 getPhotos에서 리턴받은 데이터에서 썹네일url만 추추랗여 새로운 배열로 반환
+const mapPhotos = photos => {
+  return photos.map(photo => {
+    //각 사진에 썸네일 url만 포함된 새로운 객체 배열로 변환하여 반환
+    return {url:photo.thumbnailUrl}
+  })
+
+}
+// getPhotos(1).then(data => {
+//   log(mapPhotos(data))
+// })
+
+const createImgElement = photo => {
+  const img = document.createElement("img");
+  //생성한 이미지에 src속성으로 해당 사진의 url을 설정
+  img.src = photo.url;
+  return img;
+}
+
+const createPhotoElements = photos => {
+  return photos.map(createImgElement);
+}
+
+// getPhotos(1).then(data => {
+//   const testData = mapPhotos(data);
+//   log(
+//     createPhotoElements(testData)
+//   )
+// })
+
+const appendPhotoElements = (photoElements, el) => {
+  //el이 정의되어 있을 경우, 해당 DOM 요소에 사진 요소들을 추가
+  return el?.append(...photoElements);
+}
+
+// getPhotos(1).then(data => {
+//   const testData = mapPhotos(data);
+//   const photoElementsTest = createPhotoElements(testData)
+//   appendPhotoElements(photoElementsTest, document.querySelector("#photos"))
+// })
+
+//파이프라인 패턴으로 함수 합성
+const pipe = (...fns) => (arg)=> fns.reduce((result, fn) =>
+ (fn instanceof Function? result.then(fn) :result),Promise.resolve(arg));
+
+const $ = el => document.querySelector(el);
+
+const processPhotos = pipe(
+  getPhotos,
+  mapPhotos,
+  createPhotoElements,
+  (photoElements) => appendPhotoElements(photoElements, $("#photos"))
+)
+
+//처음 페이지를 불러올떄 페이지 넘버를 인자로 전달
+processPhotos(1)
+
+const getNextPhotos = (()=>{
+  let page = 1;
+  let isFetching = false
+  return ()=>{
+    if(!isFetching){
+      
+    }
+  }
+})();
+</script>
+
+</body>
+
+</html>
