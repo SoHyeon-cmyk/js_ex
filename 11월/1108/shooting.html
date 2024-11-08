@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>슈팅게임</title>
+</head>
+<body>
+<script>
+  //캔버스 세팅
+  let canvas = document.createElement("canvas");//canvas생성
+  let ctx = canvas.getContext("2d");
+  canvas.width = 400; //캔버스의 가로 크기
+  canvas.height = 700; //캔버스의 세로 크기
+  document.body.appendChild(canvas);//body에 canvas요소를 추가
+
+  //우주선 좌표
+  let spaceshipX = canvas.width/2 - 22; //우주선의 위치를 가운데 정렬하기위해서 캔버스넓이/2 - 우주선의 절반크기만큼 빼줌
+  let spaceshipY = canvas.height - 40;//우주선의 y축 위치를 캔버스의 높이에서 우주선의 높이값만큼 빼서 캔버스하단에 우주선이 배치 되도록 함
+
+  let bulletList = [];
+//총알을 만들기 위한 생성자 함수
+function Bullet(){
+  this.x = 0;
+  this.y = 0;
+  
+  //init = xy값을 우주선 xy값으로 초기화하는 메서드
+  this.init = function(){
+    this.alive = true
+    //우주선 중앙으로 총알 위치를 정렬하기 위해 17을 더함
+    this.x = spaceshipX + 17
+    this.y = spaceshipY;
+    //생성된 총알을 bullleList에 넣어줌
+    bulletList.push(this)
+  }
+
+  //총알의 y축값에서 7을 뺴 위로 올림
+
+  this.update = function(){
+    this.y -= 20;
+  }
+  //총알이 적군을 맞췄을때 
+  this.checkHit = function(){
+    for(let i =0; i<enemyList.length; i++){
+      //총알이 적에게 닿았을 때
+      if(this.y < enemyList[i].y+40 && this.y >=enemyList[i].y && this.x >= enemyList[i].x && this.x <= enemyList[i].x+40){
+        //총알이 사라지고 적군이 죽음
+        this.alive = false;
+        //enemylist에서 총알을 맞춘 적을 제거
+        enemyList.splice(i,1)
+      }
+    }
+  }
+}
+
+//총알을 생성하는 함수
+function createBullet(){
+  let b = new Bullet();
+  b.init();//총알의 위치를 우주선의 위치로 설정
+  console.log("총알 발사")
+}
+
+//랜덤 숫자를 뽑아내는 함수 생성
+function generateRandomValue(min,max){
+  return Math.floor(Math.random()*(max-min+1))+min
+}
+
+//gameover값이 트루면 끝나고 false면 지속됨
+let gameOver = false;
+let life = 2;
+
+//적군 만들기 위한 생성자 함수
+let enemyList = [];
+function Enemy(){
+  this.x = 0;
+  this.y = 0;
+  this.init = function(){
+    this.alive = true//alive가 true일때 적군이 살아있음
+    this.y = 0;
+    //x축은 랜덤으로 적용하기 위해 랜덤숫자를 뽑아낸느 함수를 호출
+    this.x = generateRandomValue(0, canvas.width-40)
+    enemyList.push(this);
+  }
+  //적군이 y로 2씩 이동하는 함수
+  this.update = function(){
+    this.y += 2
+    //적군 위치가 우주선에 닿으면
+    if(this.y+30 >= spaceshipY && this.y <= spaceshipY + 40 && this.x + 40 >= spaceshipX && this.x <= spaceshipX+44){
+      gameOver = true;
+      this.alive=false
+      life--;
+      if(life <= 0){
+        gameOver=true
+      }
+    }
+  }
+}
+
+let interval;
+
+//적군 생성하는 함수
+
+function createEnemy(){
+  //1초마다 적군 생성
+  interval = setInterval(function(){
+    let e = new Enemy();
+    e.init();
+    console.log("적군 생성")
+  },1000)
+}
+
+
+
+
+  //객체로 event.keyCode값 저장
+  let keysDown = {};
+  function setupkeyboardListener(){
+    document.addEventListener("keydown", function(event){
+      //눌린 키코드(39:오른쪽, 37:왼쪽, 38:위, 40:아래, 32: 스페이스바)
+      //키보드 버튼을 눌렀을 때 키값을 저장
+      keysDown[event.key] = true;
+      console.log(keysDown)
+    })
+    document.addEventListener("keyup",function(event){
+      //키보드 버튼을 떼면 키값이 삭제됨
+      delete keysDown[event.key];
+
+      //총알생성
+      if(event.key == " "){
+        createBullet();
+      }
+    })
+  }
+
+  //이미지 파일들 불러오기
+  let backgroundImage, spaceshipImage, bulletImage, enemyImage, gameoverImage;
+  function loadImage(){
+    backgroundImage = new Image();
+    backgroundImage.src = 'shooting/background.png';
+    
+    spaceshipImage = new Image();
+    spaceshipImage.src = 'shooting/spaceship.png';
+    
+    bulletImage = new Image();
+    bulletImage.src = 'shooting/bullet.png';
+    
+    enemyImage = new Image();
+    enemyImage.src = 'shooting/enemy.png';
+    
+    gameoverImage = new Image();
+    gameoverImage.src = 'shooting/gameover.png';
+  }
+
+  //좌표의 값을 업데이트하는 함수
+  function update(){
+    //우주선의 오른쪽 이동 구현
+    if("ArrowRight" in keysDown){//keysDown객체의 프로퍼티 키로 ArrowRight가 있으면 값을 반환
+      spaceshipX += 7; //우주선을 오른쪽으로 이동시킴
+    }
+    //왼쪽 이동 구현
+      if("ArrowLeft" in keysDown){
+        spaceshipX -= 7 ;
+      }
+      if("ArrowUp" in keysDown){
+        spaceshipY -= 7 ;
+      }
+      if("ArrowDown" in keysDown){
+        spaceshipY += 7 ;
+      }
+
+      //캔버스 밖으로 넘어가지 않게 구현
+      if(spaceshipX <= 0){
+        spaceshipX = 0
+      }
+      if(spaceshipX >= canvas.width - 44){
+        spaceshipX = canvas.width - 44
+      }
+      if(spaceshipY <= 0){
+        spaceshipY = 0
+      }
+      if(spaceshipY >= canvas.height - 40){
+        spaceshipY = canvas.height - 40
+      }
+      
+      //총알의 y좌표 업데이트
+      for(let i =0; i < bulletList.length; i++){
+        //발사한 모든 총알을 순회하면서 update 메서드를 호출 후 위로 이동
+        bulletList[i].update();
+        if(bulletList[i].alive){
+          bulletList[i].update();
+          bulletList[i].checkHit();
+        }else{
+          bulletList.splice(i,1);
+        }
+      }
+      for(let i =0; i < enemyList.length; i++){
+        if(enemyList[i].alive){
+          enemyList[i].update();
+        }else{
+          enemyList.splice(i,1);
+
+        }
+      }
+  }
+
+  //캔버스에 그리는 함수
+  function render(){
+    //배경이미지
+    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height)
+    //우주선 이미지
+    ctx.drawImage(spaceshipImage, spaceshipX, spaceshipY);
+
+    //목숨표시
+    ctx.fillText(`목숨: ${life}`,20,30)
+    ctx.fillStyle = "white"
+    ctx.font = " 20px Airel"
+
+    //총알은 여러개가 발사되므로 for문으로 반복
+    for(let i = 0; i < bulletList.length; i++){
+      ctx.drawImage(bulletImage, bulletList[i].x,bulletList[i].y)
+    }
+    //적군도 복수객체이므로 for문으로 반복호출
+    for (let i=0; i < enemyList.length; i++){
+      ctx.drawImage(enemyImage, enemyList[i].x,enemyList[i].y)
+    }
+  }
+
+  //render 함수를 계속 실행 시켜주는 함수
+  function main(){
+    //gameover값이 true면 값을 호출하지 않음
+    if(!gameOver){
+      update(); //우주선의 위치를 업데이트
+      render() //그리는 함수
+      requestAnimationFrame(main);//그리는 함수를 반복호출
+
+    }else{//게임종료시 함수
+      ctx.drawImage(gameoverImage,20,100,350,320)
+      clearInterval(interval);
+    }
+    
+  }
+
+  //로드 이미지 함수를 호출하여 이미지 생성
+  loadImage();
+  //키보드 이벤트 함수를 호출
+  setupkeyboardListener();
+  //적 함수 호출
+  createEnemy();
+  //main함수를 호출
+  main();
+</script>
+</body>
+</html>
