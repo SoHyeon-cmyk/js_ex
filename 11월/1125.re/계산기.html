@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계산기</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing: border-box;
+      font-size:25px;
+      user-select: none;
+    }
+
+    #calculator{
+      width:325px;
+      height:auto;
+      margin:100px auto;
+      overflow: hidden;
+      padding:20px 20px 9px;
+      background:rgba(0,0,0,0.6);
+      border-radius: 3px;
+      box-shadow:0px 10px 15px rgba(0,0,0,0.2);
+      position:relative;
+    }
+    .top span.clear{
+      position:absolute;
+      z-index: 6;
+    }
+    .top .screen{
+      width:100%;
+      height:80px;
+      background:rgba(0,0,0,0.2);
+      position:absolute;
+      top:0; left:0;
+      padding:20px 10px;
+      font-size:27px;
+      line-height: 40px;
+      color:white;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      text-align: right;
+      letter-spacing: 1px;
+    }
+    .keys, .top{overflow: hidden;}
+
+    .keys span,
+    .top span.clear{
+      float:left;
+      position:relative;
+      cursor:pointer;
+      width:66px; height:56px;
+      background:rgba(0,0,0,0.5);
+      border-radius: 3px;
+      box-shadow: 0 4px rgba(0,0,0,0.2);
+
+      margin:0 7px 11px 0;
+      color:#ccc;
+      line-height: 56px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .keys .operator{
+      background:rgba(250,100,0,0.3);
+      margin-right:0;
+    }
+
+    .keys span.eval{
+      color:#888e5f;
+    }
+    .top span.clear{
+      background:transparent;
+      box-shadow: none;
+      color:#aaa;
+      width:56px;
+      left:5px;
+    }
+    .top span.clear:hover{
+      border-radius: 50%;
+      background: rgba(0,0,0,0.1);
+      color:white;
+    }
+    .keys span:hover{
+      background:rgba(255,255,255,0.8);
+      color:#333;
+    }
+    .keys span.eval:hover{
+      background:#abb850;
+      color:white;
+    }
+
+    .keys span:active{
+      box-shadow: 0 0 rgba(0,0,0,0.2);
+      top:4px;
+    }
+
+    .keys span.eval:active{
+      box-shadow: 0 0 #717a33;
+    }
+    .top span.clear:active{
+      top:4px;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator">
+    <div class="top">
+      <span class="clear">C</span>
+      <div class="screen"></div>
+    </div>
+    <div class="keys">
+      <span>7</span>
+      <span>8</span>
+      <span>9</span>
+      <span class="operator">+</span>
+      <span>4</span>
+      <span>5</span>
+      <span>6</span>
+      <span class="operator">-</span>
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+      <span class="operator">÷</span>
+      <span>0</span>
+      <span>.</span>
+      <span class="eval">=</span>
+      <span class="operator">x</span>
+    </div>
+  </div>
+  <script>
+    //모든 span(버튼)요소를 선택
+    const keys = document.querySelectorAll("#calculator span");
+
+    //사칙연산을 저장한 배열(연산자를 구분하는데 사용)
+    const operators = ['+', '-', 'x', '÷'];
+
+    //소수점이 이미 추가되었는지 추적하는 변수
+    let decimalAdded = false;
+
+    //keys배열에 있는 각 버튼에 대해 클릭 이벤트 리스너를 추가합니다.
+    keys.forEach(key => key.addEventListener("click", () => {
+      //screen은 계산기의 화면을 나타냅니다.
+      const input = document.querySelector(".screen");
+      //화면에 표시된 값을 inputVal변수에 할당합니다(사용자가 입력한 숫자 또는 연산식)
+      let inputVal = input.innerHTML;
+      //클릭한 버튼의 값을 변수에 할당
+      let btnVal = key.innerHTML;
+      //console.log(btnVal)
+      let total = 0;//계산된 결과를 저장할 변수
+
+      if(btnVal == "C"){//C버튼을 클릭했을 경우(screen지우기)
+        input.innerHTML = ""; //screen에 담긴 글자를 지웁니다
+        decimalAdded = false; //소수점 추가 여부를 초기화합니다.
+        return;//함수 종료
+      }else if(btnVal == "="){//=버튼을 클릭했을 경우
+        let equation = inputVal;//screen에 입력한 값을 equation변수에 할당
+        //screen의 마지막 글자를 lastChar에 할당
+        let lastChar = equation[equation.length - 1]
+        //console.log(lastChar)
+
+        //수식에서 곱셈(x)과 나눗셈(÷) 기호를 각각 *와 /로 바꿔줍니다.
+        equation = equation.replace(/x/g, "*").replace(/÷/g, "/");
+        //console.log(equation)
+
+        //수식의 마지막 문자가 연산자이거나 소수점이면 마지막 문자를 제거합니다.
+        if(operators.indexOf(lastChar) > -1 || lastChar == "."){
+          equation = equation.replace(/.$/, "");
+          //console.log(equation)
+        }
+
+        //eval = 문자열로 된 수식을 실행하여 결과를 반환
+        if(equation){
+          total = eval(equation)
+          //console.log(total)
+          //결곽값을 문자열로 변환하고 소수점이 포함되어있는지 확인
+          if(total.toString().indexOf(".") > -1){
+            total = total.toFixed(5);//소수점을 5자리까지 표시
+          }
+          //계산된 total값을 화면에 표시
+          input.innerHTML = total;
+        }
+        //계산이 끝났으니 소수점 추가 여부를 초기화
+        decimalAdded = false;
+
+      }else if(btnVal == '.'){//소수점 버튼을 클릭했을 때
+        if(!decimalAdded){ //소수점이 추가되지 않았다면
+          input.innerHTML += btnVal; //소수점을 추가
+          decimalAdded = true; //소수점이 중복해서 입력되지 않도록 소수점 추가여부를 true로 변경
+        }
+      }else if(operators.indexOf(btnVal) > -1){//사용자가 연산자 버튼을 클릭했을 경우
+        //입력된 버튼의 문자(연산자)를 lastChar에 저장
+        let lastChar = inputVal[inputVal.length-1];
+        //입력값이 비어있지않고 마지막 입력값이 연산자가 아니면 버튼값으 screen에 추가
+        if(inputVal != "" && operators.indexOf(lastChar) == -1){
+          input.innerHTML += btnVal;
+        //입력값이 비어 있으면 - 연산자만 입력할 수 있도록 처리합니다.  
+        }else if(inputVal == "" && btnVal == "-"){
+          input.innerHTML += btnVal
+        }
+        //연산자를 입력했으므로 소수점 추가 여부를 초기화
+        decimalAdded = false;
+      }else{
+        input.innerHTML += btnVal; //버튼값을 screen화면에 추가합니다.
+      }
+    }))
+  </script>
+</body>
+</html>
