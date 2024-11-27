@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    // 문자열indexOf(부분_문자열, 시작_위치)
+    // 문자열에서 부분 문자열을 찾아 찾은 위치를(index)를 리턴한다
+    // 시작위치의 디폴트 값은 0이고 찾지 못할 경우 리턴값은 -1이다
+
+      let s = "one two one two"
+      console.log(s.indexOf("two"))
+      console.log(s.indexOf("two" , 5))
+      console.log(s.indexOf("TWO"))
+
+      //search(/정규식/) =문자열에서 정규식을 찾아서 찾은 위치(index)를 리턴.
+      s = "hello World"
+      console.log(s.search(/[A-Z]/))
+  </script>
+</body>
+</html>

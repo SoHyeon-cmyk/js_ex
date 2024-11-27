@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>nodeName 프로퍼티</h1>
+  <p id="document"></p>
+  <p id="html"></p>
+
+  <h1 id="heading"></h1>
+  <p id="text1">text1</p>
+  <p id="text2">text2</p>
+
+  <ul id="list">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+
+  <script>
+    // HTML 문서의 자식 노드중에서 두번째 노드의 이름 선택
+    document.getElementById("document").innerHTML = document.childNodes[1]
+
+    document.getElementById("html").innerHTML = document.childNodes[1].childNodes
+  </script>
+</body>
+</html>
