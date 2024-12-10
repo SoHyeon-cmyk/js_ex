@@ -14,3 +14,14 @@ closeBt.on({click:function(){
   });
   mobileMenuBar.stop().animate({left:'0'},500,)
 }})
+
+const TrandingWrap=document.querySelector('.tranding-wrap');
+let offset = TrandingWrap.getBoundingClientRect().left;
+
+TrandingWrap.addEventListener('mousemove' ,function(){
+  if(e.pageX >=window.innerWidth - '100px'){
+    return false 
+  }else{
+    TrandingWrap.style.left = -(e.pageX-offset) + 'px'
+  }
+})

@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang=eg>
+<html lang="ko">
 
 <head>
-  <title> 디자인호텔 클론코딩 </title>
-
+  <title> 디자인호텔스 클론코딩</title>
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <meta name='Title' content='디자인호텔클론코딩'>
-  <meta name='Subject' content=''>
-  <meta name='Keywords' content=''>
-  <meta name='Author' content=''>
-  <meta name='Publisher' content='sohyeon'>
-  <meta name='Description' content=''>
-  <meta name='Author-Date' content=''>
-  <meta name='Copyright' content=''>
+  <meta name='Title' content='디자인호텔스'>
+  <meta name='Subject' content='디자인호텔스클론코딩 반응형'>
+  <meta name='Keywords' content='호텔, hotel, 디자인호텔스'>
+  <meta name='Author' content='jeehyun'>
+  <meta name='Publisher' content='jeehyun'>
+  <meta name='Description' content='반응형웹사이트 만들기'>
+  <meta name='Author-Date' content='20241309'>
 
   <!-- 접근성 텍스트(skip) 숨김 -->
   <style>
@@ -26,7 +24,6 @@
       text-indent: -9999px;
     }
   </style>
-
 
   <!-- 폰트어썸 -->
   <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
@@ -46,9 +43,8 @@
   <link rel='stylesheet' href='css/style.css' />
 
   <!-- 로컬 js -->
-  <script src='./js/script.js' defer></script>
-
-
+  <script src='js/script.js' defer></script>
+  <script src='js/video.js' defer></script>
 
 </head>
 
@@ -62,14 +58,12 @@
     <li><a href='#footer'>하단 바로가기</a></li>
   </ul>
 
-
-
   <div id="wrap">
     <div class="mobile-menu">
       <div class="mobile-menu-bar">
         <span class="menu-logoBt-wrap">
-          <a href="#" title="logo" class="logoBT">
-            <img src="img/image/logo-icon-dh.png" alt="logo">
+          <a href="#" title="logo" class="logoBt">
+            <img src="./img/logo-icon-dh.png" alt="logo">
           </a>
         </span>
         <span class="menu-appBar-wrap">
@@ -83,15 +77,16 @@
         <ul>
           <li><a href="#">HOTELS & RESORTS</a></li>
           <li><a href="#">DEALS</a></li>
-          <li><a href="#">ORIGINAL EXPERIACE</a></li>
-          <li><a href="#">CURTURE</a></li>
+          <li><a href="#">ORIGINAL EXPERIENCES</a></li>
+          <li><a href="#">CULTURE</a></li>
           <li><a href="#">GALLERY</a></li>
           <li><a href="#">STORE</a></li>
           <li><a href="#">ABOUT</a></li>
         </ul>
       </div>
       <div class="mobile-menu-footer">
-        <p>Become a member <br>
+        <p>
+          Become a member <br>
           to enjoy the best benefits!
         </p>
       </div>
@@ -101,22 +96,21 @@
         <button>SUBSCRIBE</button>
       </div>
       <div class="mobile-menu-footer-sns">
-        <span><a href="#"><i class="fab fa-facebook"></i></a></span>
+        <span><a href="#"><i class="fab fa-facebook-f"></i></a></span>
         <span><a href="#"><i class="fab fa-instagram"></i></a></span>
         <span><a href="#"><i class="fab fa-twitter"></i></a></span>
         <span><a href="#"><i class="fab fa-youtube"></i></a></span>
       </div>
     </div>
-
     <header id="header">
       <div class="header-mobile-menu-wrap">
         <div class="header-mobile-menu-bar">
-          <h1 class="header-logo-wrap"><a href="#" class="logoBt"><img src="img/image/logo.png" alt="logo"></a></h1>
+          <h1 class="header-logo-wrap"><a href="#" class="loboBt"><img src="./img/logo.png" alt="logo"></a></h1>
           <span class="header-appBar-wrap">
             <a href="javascript:" class="appbarbt">
-              <i class="appBar-line1"></i>
-              <i class="appBar-line2"></i>
-              <i class="appBar-line3"></i>
+              <i class="appbar-line1"></i>
+              <i class="appbar-line2"></i>
+              <i class="appbar-line3"></i>
             </a>
           </span>
           <span class="header-search-wrap">
@@ -126,7 +120,6 @@
           </span>
         </div>
       </div>
-
       <div class="header-pc-menu-wrap">
         <aside>
           <ul>
@@ -134,64 +127,308 @@
             <li><a href="#">Login</a></li>
             <li><a href="#">Subscribe</a></li>
           </ul>
-          <div class="header-logoNav">
-            <h1><a href="#"><img src="img/image/logo.png" alt="logo"></a></h1>
-            <nav id="nav">
-              <ul>
-                <li><a href="#"><i class="fas fa-search"></i></a></li>
-                <li><a href="#" title="HOTELS & RESORTS">HOTELS & RESORTS</a></li>
-                <li><a href="#" title="DEALS">DEALS</a></li>
-                <li><a href="#" title="ORIGINAL EXPERIENCES">ORIGINAL EXPERIENCES</a></li>
-                <li><a href="#" title="CULTURE">CULTURE</a></li>
-                <li><a href="#" title="GALLERY">GALLERY</a></li>
-                <li><a href="#" title="STORE">STORE</a></li>
-                <li><a href="#" title="ABOUT US">ABOUT US</a></li>
-              </ul>
-            </nav>
-          </div>
         </aside>
+        <div class="header-logoNav">
+          <h1><a href="#"><img src="img/image/logo.png" alt="logo"></a></h1>
+          <nav id="nav">
+            <ul>
+              <li><a href="#"> <i class="fas fa-search"></i></a></li>
+              <li><a href="#" title="HOTELS & RESORTS">HOTELS & RESORTS</a></li>
+              <li><a href="#" title="DEALS">DEALS</a></li>
+              <li><a href="#" title="ORIGINAL EXPERIENCES">ORIGINAL EXPERIENCES</a></li>
+              <li><a href="#" title="CULTURE">CULTURE</a></li>
+              <li><a href="#" title="GALLERY">GALLERY</a></li>
+              <li><a href="#" title="STORE">STORE</a></li>
+              <li><a href="#" title="ABOUT US">ABOUT US</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
-
     <main id="main">
       <section id="section1" class="section1">
         <div class="m-video">
           <video src="img/video/main.mp4" id="mainVideo" autoplay muted
-            poster="img/image/GS-blog-historical-conversions.jpg"></video>
-          <div class="m-again">
-            <h3><a href="#" class="watchagain">watch again</a></h3>
+            poster="./img/GS-blog-historical-conversions.jpg"></video>
+        </div>
+        <div class="m-again">
+          <h3><a href="#" class="watchagain">watch again</a></h3>
+        </div>
+        <div class="m-next-section"><span><a href="#">explore stories</a></span></div>
+        <div class="m-icon-footer">
+          <div class="icon-footer-left">
+            <ul>
+              <li class="addIconBtn"><span><a href="javascript:" class="videoIcon"><i
+                      class="fas fa-video"></i></a></span></li>
+              <li><span><a href="javascript:" class="wroldIcon"><i class="fas fa-globe"></i></a></span></li>
+            </ul>
           </div>
-          <div class="m-next-section">
-            <span><a href="#">explore stories</a></span>
+          <div class="icon-footer-center">
+            <ul>
+              <li><span><a href="javascript:" class="nextIcon"><i class="fas fa-chevron-down"></i></a></span></li>
+            </ul>
           </div>
-          <div class="m-icon-footer">
-            <div class="m-icon-footer-left">
-              <ul>
-                <li class="addIconBtn">
-                  <span>
-                    <a href="javascript:" class="videoIcon"><i class="fas fa-video"></i></a>
-                <li><a href="javascript:" class="worldIcon"><i class="fas fa-globe-americas"></i></a></li>
+          <div class="icon-footer-right">
+            <ul>
+              <li><span><a href="javascript:" class="pauseIcon"><i class="fas fa-pause"></i></a></span></li>
+              <li><span><a href="javascript:" class="mutedIcon"><i class="fas fa-volume-mute"></i></a></span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section id="section2" class="section2">
+        <ul>
+          <li>
+            <div>
+              <div class="section2-title">
+                <h2>Lorem, ipsum dolor sit amet</h2>
+              </div>
+              <div class="section2-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat rem consequuntur laboriosam
+                  corporis, culpa eius suscipit quia at dolores obcaecati soluta, aperiam repellendus dolorem in nulla
+                  nemo. Eos, eaque culpa.</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div>
+              <div class="section2-title">
+                <h2>Lorem, ipsum dolor sit amet</h2>
+              </div>
+              <div class="section2-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat rem consequuntur laboriosam
+                  corporis, culpa eius suscipit quia at dolores obcaecati soluta, aperiam repellendus dolorem in nulla
+                  nemo. Eos, eaque culpa.</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section id="section3" class="section3">
+        <div>
+          <h2>Trending Offers</h2>
+          <div class="tranding-wrap">
+            <ul>
+              <li><img
+                  src="https://www.designhotels.com/media/pkxfsvli/t-generic-01-nest-hotel-incheon-south-korea.jpg?width=479&height=598&format=webp&quality=80&rnd=133451401499070000"
+                  alt=""></li>
+              <li><img
+                  src="https://www.designhotels.com/media/ifba3ezu/t-generic-02-iki-retreat-kairi-murakami-iki-island-japan.jpg?width=479&height=598&format=webp&quality=80&rnd=133451329689630000"
+                  alt=""></li>
+              <li><img
+                  src="https://www.designhotels.com/media/qxvbharl/t-generic-01-bradford-house-oklahoma-united-states.jpg?width=479&height=598&format=webp&quality=80&rnd=133464200481230000"
+                  alt=""></li>
+              <li><img
+                  src="https://www.designhotels.com/media/ztthkyn5/t-generic-01-musa-guerrero-mexico.jpg?width=479&height=598&format=webp&quality=80&rnd=133433931210470000"
+                  alt=""></li>
+              <li><img
+                  src="https://www.designhotels.com/media/px1n1jdf/t-generic-nobis-hotel-palma-mallorca-spain.jpg?width=479&height=598&format=webp&quality=80&rnd=133451412321700000"
+                  alt=""></li>
+              <li><img
+                  src="https://www.designhotels.com/media/3gmfhhqf/t-generic-otro-oaxaca-oaxaca-mexico.jpg?width=479&height=598&format=webp&quality=80&rnd=133409075652800000"
+                  alt=""></li>
+              <li><img
+                  src="https://www.designhotels.com/media/dfwhdieo/t-generic-juno-hotel-sofia-sofia-bulgaria.jpg?width=479&height=598&format=webp&quality=80&rnd=133407320496470000"
+                  alt=""></li>
+              <li><img
+                  src="https://www.designhotels.com/media/105bfwz2/t-generic-myconian-o-mykonos-greece.jpg?width=479&height=598&format=webp&quality=80&rnd=133408987806400000"
+                  alt=""></li>
+              <li><img
+                  src="https://www.designhotels.com/media/rzwlpzst/t-generic-salt-of-palmar.jpg?width=479&height=598&format=webp&quality=80&rnd=133409072367100000"
+                  alt=""></li>
+              <li><img
+                  src="https://www.designhotels.com/media/jq2dogdm/t-generic-palazzo-al-velabro-rome-italy.jpg?width=479&height=598&format=webp&quality=80&rnd=133409027743970000"
+                  alt=""></li>
+              <li><img
+                  src="https://www.designhotels.com/media/c21cwc4f/t-generic-mamula-island-hotel-herceg-novi-montenegro.jpeg?width=479&height=598&format=webp&quality=80&rnd=133409095935430000"
+                  alt=""></li>
+              <li><img
+                  src="https://www.designhotels.com/media/yn2nv4om/t-generic-the-luma-hotel-kota-kinabalu-malaysia.jpg?width=479&height=598&format=webp&quality=80&rnd=133409066059800000"
+                  alt=""></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section id="section4" class="section4">
+        <div>
+          <h2 class="ir_so">Gallery</h2>
+          <div class="page-tab tabMenu">
+            <div class="container">
+              <form action="#" id="gallery-filter" class="filter-form">
+                <span class="form-item">
+                  <input type="radio" name="filter" id="filter-all" value="all" checked>
+                  <label for="filter-all">All</label>
                 </span>
-                </li>
-              </ul>
+                <span class="form-item">
+                  <input type="radio" name="filter" id="filter-beach" value="beach">
+                  <label for="filter-beach">Beach</label>
+                </span>
+                <span class="form-item">
+                  <input type="radio" name="filter" id="filter-city" value="city">
+                  <label for="filter-city">City</label>
+                </span>
+                <span class="form-item">
+                  <input type="radio" name="filter" id="filter-mountain" value="mountain">
+                  <label for="filter-mountain">Mountain</label>
+                </span>
+              </form>
             </div>
-            <div class="m-icon-footer-center">
-              <ul>
-                <a href="javascript:" class="nextIcon"><i class="fas fa-chevron-down"></i></a>
-              </ul>
-            </div>
-            <div class="m-icon-footer-right">
-              <ul>
-                <li><a href="javascript:" class="pauseIcon"><i class="fas fa-pause"></i></a></li>
-                <li><a href="javascript:" class="mutedIcon"><i class="fas fa-volume-mute"></i></a></li>
-              </ul>
+          </div>
+          <div class="gallery">
+            <ul class="gallery-wrap">
+              <li>
+                <div>
+                  <a href="javascript:" class="galleryBt">
+                    <span class="g-video">
+                      <video src="img/video/galleryVideo01.mp4" autoplay muted></video>
+                    </span>
+                    <span class="g-bg"></span>
+                    <span class="g-title">
+                      <span><strong>The Ride</strong></span>
+                      <span><b>Lorem ipsum dolor sit </b></span>
+                      <span><i class="exploreBt">ExploreBt</i></span>
+                    </span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <a href="javascript:" class="galleryBt">
+                    <span class="g-video">
+                      <video src="img/video/galleryVideo02.mp4" autoplay muted></video>
+                    </span>
+                    <span class="g-bg"></span>
+                    <span class="g-title">
+                      <span><strong>The Ride</strong></span>
+                      <span><b>Lorem ipsum dolor sit </b></span>
+                      <span><i class="exploreBt">ExploreBt</i></span>
+                    </span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <a href="javascript:" class="galleryBt">
+                    <span class="g-video">
+                      <video src="img/video/galleryVideo03.mp4" autoplay muted></video>
+                    </span>
+                    <span class="g-bg"></span>
+                    <span class="g-title">
+                      <span><strong>The Ride</strong></span>
+                      <span><b>Lorem ipsum dolor sit </b></span>
+                      <span><i class="exploreBt">ExploreBt</i></span>
+                    </span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <a href="javascript:" class="galleryBt">
+                    <span class="g-video">
+                      <video src="img/video/galleryVideo04.mp4" autoplay muted></video>
+                    </span>
+                    <span class="g-bg"></span>
+                    <span class="g-title">
+                      <span><strong>The Ride</strong></span>
+                      <span><b>Lorem ipsum dolor sit </b></span>
+                      <span><i class="exploreBt">ExploreBt</i></span>
+                    </span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <a href="javascript:" class="galleryBt">
+                    <span class="g-video">
+                      <video src="img/video/galleryVideo05.mp4" autoplay muted></video>
+                    </span>
+                    <span class="g-bg"></span>
+                    <span class="g-title">
+                      <span><strong>The Ride</strong></span>
+                      <span><b>Lorem ipsum dolor sit </b></span>
+                      <span><i class="exploreBt">ExploreBt</i></span>
+                    </span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <a href="javascript:" class="galleryBt">
+                    <span class="g-video">
+                      <img src="./img/image/videoBg06.jpg" />
+                    </span>
+                    <span class="g-bg"></span>
+                    <span class="g-title">
+                      <span><strong>The Ride</strong></span>
+                      <span><b>Lorem ipsum dolor sit </b></span>
+                      <span><i class="exploreBt">ExploreBt</i></span>
+                    </span>
+                  </a>
+                </div>
+              </li>
+            </ul>
+            <div class="loadMore">
+              <button class="loadMoreBt">load More</button>
             </div>
           </div>
         </div>
       </section>
     </main>
+    <footer id="footer">
+      <div class="container">
+        <div class="footer-wrap">
+          <div class="copyandfMenu">
+            <div class="copy">
+              <a href="#" class="fLogo">&copy; 2024 Design Hotels <sup>TM</sup></a>
+            </div>
+            <div class="fMenu">
+              <ul>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Cancle Booking</a></li>
+              </ul>
+              <ul>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Cancle Booking</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Cancle Booking</a></li>
+              </ul>
+              <ul>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Cancle Booking</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Cancle Booking</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="sns-Wrap">
+            <ul> 
+              <li class="instagram"><a href="#">instagram</a></li>
+              <li class="instagram"><a href="#">instagram</a></li>
+              <li class="instagram"><a href="#">instagram</a></li>
+              <li class="instagram"><a href="#">instagram</a></li>
+              <li class="instagram"><a href="#">instagram</a></li>
+            </ul>
+            <div>
+              <div class="footer-currency">
+                <span>Currency</span>
+                <a href="javascript:"></a>
+                <div class="currencies currencies1"></div>
+                <div>
+                  <ul>
+                    <li><a href="#">AED</a></li>
+                    <li><a href="#">ALL</a></li>
+                    <li><a href="#">AUD</a></li>
+                    <li><a href="#">BTD</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
-  <script src="./js/video.js"></script>
+
 </body>
 
 </html>
