@@ -55,7 +55,8 @@
         // attribute로 초기 left값을 선언하지 않았을 경우
         obj.style.left =parseInt(getComputedStyle(obj).left) + 10 + "px";
         
-        myTimeout = setTimeout(doMove, 250, obj); //doMove함수를 0.25초 뒤에 호출 이때 obj매개변수를 전달(재귀 함수) 
+        myTimeout = setTimeout(doMove, 250, obj); //doMove함수를 0.25초 뒤에 
+        //호출 이때 obj매개변수를 전달(재귀 함수) 
       }else{//flag가 false면 실행
         clearTimeout(myTimeout)
       }

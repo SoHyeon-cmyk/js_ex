@@ -91,7 +91,7 @@
   </div>
   
   <section class="content">
-    <h1>로그인 입력창을 만들어 보세요</h1>
+    
     <!--버튼을 클릭하면 popup함수가 호출-->
     <button onclick="popup()">Login</button>
     <p id="message"></p>
@@ -130,7 +130,7 @@
 
       //fetch API로 서버와 연결
       const response = await fetch(
-        "http://localhost:3000/login",
+        "http://localhost:5501/login",
         {
           method: "POST",
           headers:{

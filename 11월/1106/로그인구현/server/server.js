@@ -3,7 +3,7 @@ const app = express();//express 애플리케이션 인스턴스 등록
 //다른 도메인에서 API에 접근할 수 있도록 해주는 미들웨어
 const cors = require('cors');
 
-const PORT = 3000; //서버가 실행될 포트
+const PORT = 5501; //서버가 실행될 포트
 
 app.use(cors());//모든 요청에 대해 CORS를 허용
 
@@ -41,7 +41,7 @@ app.post('/login', (req, res) => {
 
   //사용자가 존재하면 비밀번호를 비교하여 일치여부에 따라 성공 또는 실패 메시지를 반환
   if(foundUser.password === pw){//비밀번호 비교
-    return res.json({success: true, message: "로그인 성공!"})
+    return res.json({success: true, mesage: "로그인 성공!"})
   }else{//비밀번호가 일치하지 않는 경우
     return res.json({success: false, message: "사용자 비밀번호가 일치하지 않습니다"})
   }

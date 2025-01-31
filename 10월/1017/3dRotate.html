@@ -131,7 +131,7 @@
     clearInterval(timer);
   })
 
-  slideshow.addEventListener('mouseleave',()=>{//mouseout을 쓰면 버블링 때문에 중첩됨
+  slideshow.addEventListener('mouseout',()=>{//mouseout을 쓰면 버블링 때문에 중첩됨
     timer =  setInterval(() => {
       count += 0.2;
       updateRotation()
